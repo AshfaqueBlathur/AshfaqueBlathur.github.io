@@ -1,13 +1,4 @@
 {
 "short_name":"Eid Mubarak!",
 "name":"Eid Mubarak!",
-"icons":[
-        {"src":"/assets/img/Webp.net-resizeimage%20(2).png","type":"image/png","sizes":"512x512"},
-        {"src":"/assets/img/crescent-moon-png-35116.png","type":"image/png","sizes":"192x192"}
-        ],
-"start_url":"https://ashfaqueblathur.github.io/",
-"background_color":"rgb(0,249,189)",
-"theme_color":"rgb(255,201,63)",
-"display":"fullscreen",
-"orientation":"portrait"
-}
+"icons":[{"src":"/assets/img/Webp.net-resizeimage%20(2).png","type":"image/png","sizes":"512x512"},{"src":"/assets/img/crescent-moon-png-35116.png","type":"image/png","sizes":"192x192"}],"start_url":"https://ashfaqueblathur.github.io/","background_color":"rgb(0,249,189)","theme_color":"rgb(255,201,63)","display":"fullscreen","orientation":"portrait"}
