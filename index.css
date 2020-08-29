@@ -28,7 +28,11 @@ marquee{
     text-transform: capitalize;
     text-shadow: 2px 2px 4px #000;
 }
-
+a{
+    text-transform: uppercase;
+    font-size: smaller;
+    padding: 8px;
+}
 @media screen and (min-width: 640px) {
     marquee{
         width: 50%;
