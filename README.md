@@ -1,8 +1,6 @@
-# ashfaqueblathur.github.io
 
+# Thanks for the visit.
 
-Thanks for the visit.
-
-Nothing remains here now.
+# Nothing remains here now.
 
 Kindly visit again later, to see what I'm building now!
