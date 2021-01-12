@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 :root{
-    --bgc1: #0d0b25;
-    --bgc2: #1e996a;
+    --bgc1: #333242;
+    --bgc2: #346351;
+    --fabbg: #611b7c;
     --txtc-1: #ffffff;
     --txtc-2: #000000;
 }
@@ -9,7 +9,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Righteous', cursive;
 }
 body{
     width: 100%;
@@ -26,7 +25,6 @@ header .wrapper{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-items: center;
     align-items: center;
 }
 header .wrapper .img img{
@@ -45,13 +43,13 @@ header .wrapper .name{
     width: 100%;
     min-height: 100vh;
 }
-#meme-ul{
+#memes-ul{
     width: 100%;
 }
-#meme-ul li{
+#memes-ul li{
     width: 100%;
     list-style: none;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 .meme-img{
     width: 100%;
@@ -59,12 +57,18 @@ header .wrapper .name{
 .meme-img img{
     width: 100%;
 }
+.blur{
+    filter: blur(20px);
+}
 .meme-detail{
     width: 100%;
     font-size: small;
 }
 .title{
-    color: #33a9e0;
+    display: inline-block;
+    font-size: 20px;
+    width: 100%;
+    color: #ff9595;
 }
 .author{
     color: #33e089;
@@ -76,12 +80,14 @@ header .wrapper .name{
     color: #e03333;
 }
 .sourece a:any-link{
-    background-color: #d8f33c6c;
+    font-style: italic;
+    font-weight: 100;
+    background-color: #ffee003a;
     color: #ffffff;
 }
 .fabs{
     position: fixed;
-    bottom: 40px;
+    bottom: 20px;
     right: 20px;
 }
 .fabs p{
@@ -92,13 +98,76 @@ header .wrapper .name{
     margin: 10px 0;
     padding: 10px 5px;
     z-index: 100;
-    background-color: var(--bgc2);
+    background-color: var(--fabbg);
     box-shadow: #0d0b25 -2px 2px 5px;
     border-radius: 50%;
 }
 .fabs p:last-child{
-    font-size: 35px;
-    padding: 0px 5px;
+    font-size: 25px;
+    height: 35px;
+    border-radius: 5px;
+    padding: 0 10px;
+    text-align: center;
+}
+.meme-config{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bgc2);
+    transition: 300ms;
+    text-transform: uppercase;
+    text-align: center;
+}
+.config{
+    width: 90%;
+    margin: 20px 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.config h3{
+    color: #e0d433;
+    text-decoration: underline;
+}
+.config h3 img{
+    display: block;
+    width: 50px;
+    margin: 10px calc((100% - 50px) / 2);
+}
+.count, .select-sub, .quality{
+    width: 100%;
+    margin: 2vh 0;
+}
+.count input{
+    margin: 10px 0;
+}
+.select-sub p, .count label p{
+    font-size: 15px;
+    color: #ffd000d2;
+}
+.count input, .select-sub input{
+    width: 100%;
+}
+.quality div{
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+}
+.quality p{
+    color: #ffd000d2;
+    text-decoration: underline;
+}
+.meme-config button{
+    display: block;
+    width: 100%;
+    height: 40px;
+    border: 2px black solid;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 footer{
     width: 100%;
@@ -106,7 +175,7 @@ footer{
     background-color: var(--bgc2);
     z-index: 100;
 }
-@media only screen and (max-width: 500px){
+@media only screen and (max-width: 640px){
     header .wrapper .img{
         width: 100%;
     }

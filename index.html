@@ -20,14 +20,50 @@
     </header>
     <div class="fun">
         <div class="fun-contin">
-            <ul id="memes-ul">
-                
-            </ul>
+            <ul id="memes-ul"></ul>
         </div>
     </div>
     <div class="fabs">
         <p onclick="meme()"><img src="resources/img/meme-face.ico" alt="meme-face"></p>
-        <p onclick="radio()">📻</p>
+        <p onclick="memeConfig()">🔨</p>
+    </div>
+    <div class="meme-config" style="display: none;">
+        <form class="config" id="config">
+            <h3><img src="resources/img/meme-face.ico" alt="meme-face">configure the meme requests.</h3>
+            <div class="select-sub">
+                <label for="subreddit">type your favourit subreddit</label>
+                <input type="text" name="subreddit" id="subreddit">
+                <p>please claer the field if cant get any memes anymore</p>
+            </div>
+            <div class="count">
+                <label for="count">drag to select the number of memes.<p>now selected: <span id="now-selected">0</span></p></label>
+                <input type="range" name="number-of-memes" id="count" min="1" max="50" oninput="showCount()">
+            </div>
+            <div class="quality">
+                <p>select the meme quality</p>
+                <div>
+                    <input type="radio" name="quality" id="1">
+                    <label for="1">extra low quality</label>
+                </div>
+                <div>
+                    <input type="radio" name="quality" id="2">
+                    <label for="2">low quality</label>
+                </div>
+                <div>
+                    <input type="radio" name="quality" id="3" checked>
+                    <label for="3">medium quality</label>
+                </div>
+                <div>
+                    <input type="radio" name="quality" id="4">
+                    <label for="4">high quality</label>
+                </div>
+            </div>
+            <div class="nsfw">
+                <label for="nsfw">blur nsfw/spoiler contents.</label>
+                <input type="checkbox" name="nsfw" id="nsfw">
+            </div>
+        </form>
+        <button type="button" onclick="closeConfig()">save & exit</button>
     </div>
     <footer>
         <div class="social">
