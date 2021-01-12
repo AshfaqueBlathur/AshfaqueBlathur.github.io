@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+:root{
+    --bgc1: #0d0b25;
+    --bgc2: #1e996a;
+    --txtc-1: #ffffff;
+    --txtc-2: #000000;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Righteous', cursive;
+}
+body{
+    width: 100%;
+    background-color: var(--bgc1);
+    color: var(--txtc-1);
+}
+header{
+    width: 100%;
+    background-color: var(--bgc2);
+    color: var(--txtc-2);
+    z-index: 100;
+}
+header .wrapper{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: center;
+    align-items: center;
+}
+header .wrapper .img img{
+    display: block;
+    width: 200px;
+    height: 200px;
+    margin: 20px 10px 20px 40px;
+    border: 2px var(--txtc-2) solid;
+    border-radius: 50%;
+}
+header .wrapper .name{
+    text-align: left;
+    color: var(--txtc-1)
+}
+.fun{
+    width: 100%;
+    min-height: 100vh;
+}
+#meme-ul{
+    width: 100%;
+}
+#meme-ul li{
+    width: 100%;
+    list-style: none;
+    margin: 10px 0;
+}
+.meme-img{
+    width: 100%;
+}
+.meme-img img{
+    width: 100%;
+}
+.meme-detail{
+    width: 100%;
+    font-size: small;
+}
+.title{
+    color: #33a9e0;
+}
+.author{
+    color: #33e089;
+}
+.subreddit{
+    color: #e0d433;
+}
+.ups{
+    color: #e03333;
+}
+.sourece a:any-link{
+    background-color: #d8f33c6c;
+    color: #ffffff;
+}
+.fabs{
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+}
+.fabs p{
+    cursor: pointer;
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 10px 0;
+    padding: 10px 5px;
+    z-index: 100;
+    background-color: var(--bgc2);
+    box-shadow: #0d0b25 -2px 2px 5px;
+    border-radius: 50%;
+}
+.fabs p:last-child{
+    font-size: 35px;
+    padding: 0px 5px;
+}
+footer{
+    width: 100%;
+    height: 100px;
+    background-color: var(--bgc2);
+    z-index: 100;
+}
+@media only screen and (max-width: 500px){
+    header .wrapper .img{
+        width: 100%;
+    }
+    header .wrapper .img img{
+        margin: 10px calc((100% - 200px) / 2);
+    }
+    header .wrapper .name{
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+}
