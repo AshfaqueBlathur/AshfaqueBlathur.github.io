@@ -171,14 +171,14 @@ header .wrapper .name{
     display: block;
     width: 50px;
     margin: 0 calc((100% - 50px) / 2);
-    margin-top: 7vh;
+    margin-top: 5vh;
 }
 .count, .select-sub, .quality{
     width: 100%;
-    margin: 2vh 0;
+    margin: 5px 0;
 }
 .count input{
-    margin: 10px 0;
+    margin: 5px 0;
 }
 .select-sub p, .count label p{
     font-size: 15px;
@@ -190,7 +190,7 @@ header .wrapper .name{
 .quality div{
     display: block;
     width: 100%;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 .quality p{
     color: #ffd000d2;

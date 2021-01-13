@@ -70,6 +70,15 @@ function inputMeme(resObj){
 // Fetch Configuratio
 const configMenu = document.querySelector(".meme-config");
 const configForm = document.getElementById('config');
+const countShower = document.getElementById("now-selected");
+function showCount(){
+    countShower.innerText = configForm[1].value;
+};
+updateConfigForm();
+function updateConfigForm(){
+    configForm[0].value = localStorage.favSub;
+    countShower.innerText = configForm[1].value;
+}
 function memeConfig(){
     configMenu.style.display = 'block';
 };
@@ -107,8 +116,4 @@ function storeLocal(favSub, count, quality, nsfw){
     localStorage.count = count;
     localStorage.quality = quality;
     localStorage.nsfw = nsfw;
-};
-const countShower = document.getElementById("now-selected");
-function showCount(){
-    countShower.innerText = configForm[1].value;
 };
