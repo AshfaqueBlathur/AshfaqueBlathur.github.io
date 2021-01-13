@@ -1,17 +1,38 @@
+// Toast
+const toastBlock = document.getElementById("toastblock");
+function clearBlock(){
+    toastBlock.innerHTML = "";
+};
+function toast(msg, bg){
+    let toastMsg = `<p style="background-color: ${bg};">${msg}</p>`;
+    toastBlock.innerHTML = toastMsg;
+    setTimeout(clearBlock , 2000);
+};
+
+
+// Fetch Meme
+var fetchTarget;
+updateFetchTarget();
 function meme(){
     fetch(fetchTarget)
     .then(res => {
         if (res.ok){
             res.json().then(res => inputMeme(res))
-        }
+        };
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err);
+        toast(`Error getting memes..<br>${err}`, "#ff2929");
+    })
 };
 
+
+// Input Memes
 const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
     let count = resObj.count,
         memes = resObj.memes;
+    toast(`Got ${count} memes..`, "#00ff80");
     memes.forEach(meme => {
         let postLink = meme.postLink,
             subreddit = meme.subreddit,
@@ -29,7 +50,7 @@ function inputMeme(resObj){
             var nsfwClass = "show";
         };
         li.innerHTML = `<div class="meme-img">
-                            <img class="blur" src="${preview[parseInt(localStorage.quality)]}" alt="meme from reddit by ${author}">
+                            <img class="${nsfwClass}" src="${preview[parseInt(localStorage.quality)]}" alt="meme from reddit by ${author}">
                         </div>
                         <div class="meme-detail">
                             <p class="detail">
@@ -44,9 +65,11 @@ function inputMeme(resObj){
     });
 };
 
+
+
+// Fetch Configuratio
 const configMenu = document.querySelector(".meme-config");
 const configForm = document.getElementById('config');
-
 function memeConfig(){
     configMenu.style.display = 'block';
 };
@@ -69,6 +92,15 @@ function closeConfig(){
         var nsfw = "show";
     }; 
     storeLocal(favSub, count, quality, nsfw);
+    updateFetchTarget();
+};
+function updateFetchTarget(){
+    if (localStorage.favSub != ''){
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/${parseInt(localStorage.count)}`;
+    } else {
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
+    };
+    console.log("Gonna fetch " + fetchTarget);
 };
 function storeLocal(favSub, count, quality, nsfw){
     localStorage.favSub = favSub;
@@ -76,13 +108,6 @@ function storeLocal(favSub, count, quality, nsfw){
     localStorage.quality = quality;
     localStorage.nsfw = nsfw;
 };
-
-if (localStorage.favSub != ''){
-    var fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/${parseInt(localStorage.count)}`;
-} else {
-    var fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
-};
-
 const countShower = document.getElementById("now-selected");
 function showCount(){
     countShower.innerText = configForm[1].value;

@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/*
+font-family: 'Poppins', sans-serif;
+*/
 :root{
-    --bgc1: #333242;
-    --bgc2: #346351;
-    --fabbg: #611b7c;
+    --bgc1: #2e416b;
+    --bgc2: #26312d;
+    --fabbg: #493650;
     --txtc-1: #ffffff;
     --txtc-2: #000000;
 }
@@ -14,6 +18,7 @@ body{
     width: 100%;
     background-color: var(--bgc1);
     color: var(--txtc-1);
+    font-family: 'Poppins', sans-serif;
 }
 header{
     width: 100%;
@@ -32,12 +37,41 @@ header .wrapper .img img{
     width: 200px;
     height: 200px;
     margin: 20px 10px 20px 40px;
-    border: 2px var(--txtc-2) solid;
+    border: 5px #ffffff solid;
     border-radius: 50%;
 }
 header .wrapper .name{
     text-align: left;
     color: var(--txtc-1)
+}
+#toastblock p{
+    position: fixed;
+    display: block;
+    width: 90%;
+    margin: 0 5%;
+    min-height: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    text-shadow: black -1px 0;
+    font-weight: 600;
+    font-size: smaller;
+    animation: toast 2s forwards ease-out;
+}
+@keyframes toast{
+    0%,100%{
+        top: -10vh;
+        display: none;
+    }
+    20%,80%{
+        top: 2vh;
+    }
+    25%,35%{
+        transform: scaleX(1);
+    }
+    30%{
+        transform: scaleX(1.125);
+    }
 }
 .fun{
     width: 100%;
@@ -47,9 +81,9 @@ header .wrapper .name{
     width: 100%;
 }
 #memes-ul li{
-    width: 100%;
+    width: 98%;
     list-style: none;
-    margin: 15px 0;
+    margin: 10px 1%;
 }
 .meme-img{
     width: 100%;
@@ -62,11 +96,12 @@ header .wrapper .name{
 }
 .meme-detail{
     width: 100%;
-    font-size: small;
+    font-size: smaller;
 }
 .title{
     display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 600;
     width: 100%;
     color: #ff9595;
 }
@@ -81,7 +116,8 @@ header .wrapper .name{
 }
 .sourece a:any-link{
     font-style: italic;
-    font-weight: 100;
+    font-weight: 400;
+    font-size: smaller;
     background-color: #ffee003a;
     color: #ffffff;
 }
@@ -121,7 +157,7 @@ header .wrapper .name{
 }
 .config{
     width: 90%;
-    margin: 20px 5%;
+    margin: 0 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -134,7 +170,8 @@ header .wrapper .name{
 .config h3 img{
     display: block;
     width: 50px;
-    margin: 10px calc((100% - 50px) / 2);
+    margin: 0 calc((100% - 50px) / 2);
+    margin-top: 7vh;
 }
 .count, .select-sub, .quality{
     width: 100%;
@@ -180,7 +217,8 @@ footer{
         width: 100%;
     }
     header .wrapper .img img{
-        margin: 10px calc((100% - 200px) / 2);
+        margin: 0 calc((100% - 200px) / 2);
+        margin-top: 20px;
     }
     header .wrapper .name{
         width: 100%;
