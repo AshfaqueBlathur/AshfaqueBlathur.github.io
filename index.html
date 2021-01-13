@@ -25,8 +25,10 @@
             <ul id="memes-ul"></ul>
         </div>
     </div>
+    <div>
+        <button type="button" class="load" onclick="meme()">load more</button>
+    </div>
     <div class="fabs">
-        <p onclick="meme()"><img src="resources/img/meme-face.ico" alt="meme-face"></p>
         <p onclick="memeConfig()">🔨</p>
     </div>
     <div class="meme-config" style="display: none;">
@@ -39,7 +41,7 @@
             </div>
             <div class="count">
                 <label for="count">drag to select the number of memes.<p>now selected: <span id="now-selected">0</span></p></label>
-                <input type="range" name="number-of-memes" id="count" min="1" max="50" oninput="showCount()">
+                <input type="range" name="number-of-memes" id="count" min="1" max="10" oninput="showCount()">
             </div>
             <div class="quality">
                 <p>select the meme quality</p>
@@ -67,14 +69,14 @@
         </form>
         <button type="button" onclick="closeConfig()">save & exit</button>
     </div>
-    <footer>
+    <!-- <footer>
         <div class="social">
             <a href="http://"></a>
             <a href="http://"></a>
             <a href="http://"></a>
             <a href="http://"></a>
         </div>
-    </footer>
+    </footer> -->
     <script src="resources/app.js"></script>
 </body>
 </html>

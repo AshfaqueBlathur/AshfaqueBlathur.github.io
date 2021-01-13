@@ -47,16 +47,14 @@ header .wrapper .name{
 #toastblock p{
     position: fixed;
     display: block;
-    width: 90%;
-    margin: 0 5%;
-    min-height: 60px;
-    padding: 5px;
-    border-radius: 5px;
-    color: white;
-    text-shadow: black -1px 0;
+    width: 100%;
+    min-height: 30px;
+    padding: 5px 10px;
+    color: black;
     font-weight: 600;
     font-size: smaller;
-    animation: toast 2s forwards ease-out;
+    text-align: center;
+    animation: toast 3s forwards ease-out;
 }
 @keyframes toast{
     0%,100%{
@@ -64,13 +62,13 @@ header .wrapper .name{
         display: none;
     }
     20%,80%{
-        top: 2vh;
+        top: 0;
     }
-    25%,35%{
-        transform: scaleX(1);
+    30%,50%{
+        filter: hue-rotate(0deg);
     }
-    30%{
-        transform: scaleX(1.125);
+    40%{
+        filter: hue-rotate(360deg);
     }
 }
 .fun{
@@ -121,24 +119,35 @@ header .wrapper .name{
     background-color: #ffee003a;
     color: #ffffff;
 }
+.load{
+    cursor: pointer;
+    display: block;
+    background-color: #2e416b;
+    border: 2px solid #e0d433;
+    color: #e0d433;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: medium;
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    transition: 500ms;
+}
+.load:focus, .load:hover{
+    filter: saturate(10);
+    letter-spacing: 15px;
+}
 .fabs{
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 50px;
+    right: 10px;
 }
 .fabs p{
     cursor: pointer;
     display: block;
-    width: 60px;
-    height: 60px;
-    margin: 10px 0;
-    padding: 10px 5px;
     z-index: 100;
     background-color: var(--fabbg);
     box-shadow: #0d0b25 -2px 2px 5px;
-    border-radius: 50%;
-}
-.fabs p:last-child{
     font-size: 25px;
     height: 35px;
     border-radius: 5px;
@@ -149,11 +158,11 @@ header .wrapper .name{
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 100vh;
     background-color: var(--bgc2);
     transition: 300ms;
     text-transform: uppercase;
     text-align: center;
+    overflow-y: scroll;
 }
 .config{
     width: 90%;
@@ -171,7 +180,7 @@ header .wrapper .name{
     display: block;
     width: 50px;
     margin: 0 calc((100% - 50px) / 2);
-    margin-top: 5vh;
+    margin-top: 20vh;
 }
 .count, .select-sub, .quality{
     width: 100%;
@@ -201,17 +210,17 @@ header .wrapper .name{
     width: 100%;
     height: 40px;
     border: 2px black solid;
-    position: absolute;
+    position: relative;
     bottom: 0;
     cursor: pointer;
     text-transform: uppercase;
 }
-footer{
+/* footer{
     width: 100%;
     height: 100px;
     background-color: var(--bgc2);
     z-index: 100;
-}
+} */
 @media only screen and (max-width: 640px){
     header .wrapper .img{
         width: 100%;

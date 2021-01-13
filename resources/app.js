@@ -6,7 +6,7 @@ function clearBlock(){
 function toast(msg, bg){
     let toastMsg = `<p style="background-color: ${bg};">${msg}</p>`;
     toastBlock.innerHTML = toastMsg;
-    setTimeout(clearBlock , 2000);
+    setTimeout(clearBlock , 3000);
 };
 
 
@@ -25,8 +25,7 @@ function meme(){
         toast(`Error getting memes..<br>${err}`, "#ff2929");
     })
 };
-
-
+window.onload = meme();
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
@@ -77,14 +76,19 @@ function showCount(){
 updateConfigForm();
 function updateConfigForm(){
     configForm[0].value = localStorage.favSub;
-    countShower.innerText = configForm[1].value;
+    configForm[1].value = parseInt(localStorage.quality);
+    countShower.innerText = localStorage.quality;
 }
 function memeConfig(){
     configMenu.style.display = 'block';
 };
 function closeConfig(){
     configMenu.style.display = 'none';
-    var favSub = configForm[0].value;
+    if (configForm[0].value == ''){
+        var favSub = '';
+    } else {
+        var favSub = configForm[0].value;
+    }
     var count = configForm[1].value;
     if (configForm[2].checked){
         var quality = 0;
