@@ -38,8 +38,8 @@
         </div>
     </div>
     <div class="fabs">
-        <p onclick="memeConfig()">⚙</p>
-        <p id="meme-loader" onclick="meme()">😆</p>
+        <p id="open-config" onclick="openConfig()">⚙</p>
+        <p id="meme-loader" onclick="loadMeme()">😆</p>
     </div>
     <div class="meme-config" style="display: none;">
         <form class="config" id="config">
@@ -60,11 +60,11 @@
                     <label for="1">extra low quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="2">
+                    <input type="radio" name="quality" id="2" checked>
                     <label for="2">low quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="3" checked>
+                    <input type="radio" name="quality" id="3">
                     <label for="3">medium quality</label>
                 </div>
                 <div>
@@ -84,7 +84,7 @@
         <button type="button" onclick="closeConfig()">save & exit</button>
     </div>
     <div class="free">
-        <p>Uses Meme api by <a href="http://github.com/D3vd/">D3vd</a> for fetching meme.</p>
+        <p>uses Meme api by <a href="http://github.com/D3vd/">D3vd</a> for fetching meme.</p>
         <p>🚽 😷 😰 🗽 🔏 💪 💣 👷</p>
     </div>
     <script src="resources/app.js"></script>

@@ -108,11 +108,11 @@ header .wrapper .name{
     20%,80%{
         top: 0;
     }
-    30%,50%{
+    35%,45%{
         filter: hue-rotate(0deg);
     }
     40%{
-        filter: hue-rotate(360deg);
+        filter: hue-rotate(180deg);
     }
 }
 
@@ -166,28 +166,33 @@ header .wrapper .name{
     color: #ffffff;
 }
 
-.fabs{
-    position: fixed;
-    bottom: 10px;
-    right: 0;
-}
 .fabs p{
     cursor: pointer;
     display: block;
-    z-index: 100;
-    background-color: #04140e;
-    box-shadow: #ffffff -1px 1px 2px,
-                #000000 -3px 3px 4px  ;
-    font-size: 30px;
-    height: 40px;
-    width: 50px;
-    border-radius: 10px 0 0 10px;
-    margin: 10px 0;
+    position: fixed;
+    height: 50px;
+    width: 60px;
     text-align: center;
+    background-color: #27644e;
+    z-index: 90;
 }
-.fabs p:last-child{
-    font-size: 25px;
+#open-config{
+    bottom: 0;
+    left: 0;
+    font-size: 35px;
+    padding: 0 0 10px 0;
+    border-radius: 0 10px 0 0;
+    box-shadow: #ffffff 1px 0 2px,
+                #000000 3px 0 4px;
+}
+#meme-loader{
+    bottom: 0;
+    right: 0;
+    font-size: 30px;
+    padding: 5px 0 0 0;
     border-radius: 10px 0 0 0;
+    box-shadow: #ffffff -1px 1px 2px,
+                #000000 -3px 3px 4px;
 }
 
 
@@ -196,11 +201,13 @@ header .wrapper .name{
     position: fixed;
     bottom: 0;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: var(--bgc2);
     transition: 300ms;
     text-transform: uppercase;
     text-align: center;
+    overflow-y: scroll;
+    z-index: 110;
 }
 .config{
     width: 90%;
@@ -244,25 +251,30 @@ header .wrapper .name{
 .meme-config button{
     cursor: pointer;
     display: block;
-    width: calc(100% - 100px);
-    margin: 0 50px;
+    width: 50%;
     height: 30px;
     max-height: 10vh;
+    margin: 10px 25%;
     padding: 2px;
     background-color: #4d5669;
     border: 2px solid #f8ea22;
-    color: #64e033;
+    color: #f8ea22;
     letter-spacing: 5px;
     text-transform: uppercase;
     font-size: medium;
     transition: 500ms;
 }
+
+
 .free{
     height: 130px;
     width: 100%;
     background-color: #050307;
-    padding: 20px 80px 20px 20px;
+    padding-top: 30px;
+    text-align: center;
 }
+
+
 @media only screen and (max-width: 640px){
     header .wrapper .img{
         width: 100%;

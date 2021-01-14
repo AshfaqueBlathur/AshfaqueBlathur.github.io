@@ -12,8 +12,7 @@ function toast(msg, bg){
 
 // Fetch Meme
 var fetchTarget;
-updateFetchTarget();
-function meme(){
+function loadMeme(){
     fetch(fetchTarget)
     .then(res => {
         if (res.ok){
@@ -25,18 +24,20 @@ function meme(){
         toast(`Error getting memes..<br>${err}`, "#ff2929");
     })
 };
-//window.onload = meme();
+
 var fire = true;
 window.onscroll = function(ev){
     let windowHight = Math.ceil(window.innerHeight + window.pageYOffset);
     let bodyHight = Math.ceil(document.body.offsetHeight);
     if (fire && (windowHight >= bodyHight) && (load == "auto")){
         fire = false;
-        meme();
+        loadMeme();
     } else if (!fire && (windowHight < bodyHight)){
         fire = true;
     };
 };
+
+
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
@@ -54,13 +55,13 @@ function inputMeme(resObj){
             ups = meme.ups,
             preview = meme.preview,
             li = document.createElement('li');
-        if ((nsfw || spoiler) && (localStorage.nsfw == "blur")){
+        if ((nsfw || spoiler) && (nsfw == "blur")){
             var nsfwClass = "blur";
         } else {
             var nsfwClass = "show";
         };
         li.innerHTML = `<div class="meme-img">
-                            <img class="${nsfwClass}" src="${preview[parseInt(localStorage.quality)]}" alt="meme from reddit by ${author}">
+                            <img class="${nsfwClass}" src="${preview[quality]}" alt="meme from reddit by ${author}">
                         </div>
                         <div class="meme-detail">
                             <p class="detail">
@@ -76,64 +77,39 @@ function inputMeme(resObj){
 };
 
 
-
 // Fetch Configuratio
 const configMenu = document.querySelector(".meme-config");
 const configForm = document.getElementById('config');
 const countShower = document.getElementById("now-selected");
 const loader = document.getElementById("meme-loader");
+
 function showCount(){
     countShower.innerText = configForm[1].value;
 };
-updateConfigForm();
-function updateConfigForm(){
-    configForm[0].value = localStorage.favSub;
-    configForm[1].value = (localStorage.count);
-    countShower.innerText = localStorage.count;
-    if (((localStorage.favSub || localStorage.count) == ("undefined")) || (localStorage.count == 0)){
-        configMenu.style.display = 'block';
-    };
-    if (localStorage.load == "auto"){
-        loader.style.display = 'none';
-    } else {
-        loader.style.display = 'inline-block';
-    };
-    let quality = localStorage.quality;
-    if (quality == '0'){
-        configForm[2].checked;
-    } else if (quality == '1'){
-        configForm[3].checked;
-    } else if (quality == '4'){
-        configForm[4].checked;
-    } else if (quality == '5'){
-        configForm[5].checked;
-    } else if (localStorage.nsfw == 'blur'){
-        configForm[6].checked;
-    } else if (localStorage.load == 'auto'){
-        configForm[7].checked;
-    };
-};
-function memeConfig(){
+
+var favSub, count, quality, nsfw, load;
+function openConfig(){
     configMenu.style.display = 'block';
 };
-var load;
+openConfig();
+
 function closeConfig(){
     configMenu.style.display = 'none';
-    var favSub = configForm[0].value;
-    var count = configForm[1].value;
+    favSub = configForm[0].value;
+    count = configForm[1].value;
     if (configForm[2].checked){
-        var quality = 0;
+        quality = 0;
     } else if (configForm[3].checked){
-        var quality = 1;
+        quality = 1;
     } else if (configForm[4].checked){
-        var quality = 2;
+        quality = 2;
     } else if (configForm[5].checked){
-        var quality = 3;
+        quality = 3;
     };
     if (configForm[6].checked){
-        var nsfw = "blur";
+        nsfw = "blur";
     } else {
-        var nsfw = "show";
+        nsfw = "show";
     }; 
     if (configForm[7].checked){
         load = "auto";
@@ -142,24 +118,22 @@ function closeConfig(){
         load = "manual";
         loader.style.display = 'inline-block';
     }; 
-    storeLocal(favSub, count, quality, nsfw, load);
     updateFetchTarget();
 };
+
 function updateFetchTarget(){
-    if (localStorage.load == "auto"){
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/1`;
-    } else if ((localStorage.load == "manual") && (localStorage.favSub != '') && (parseInt(localStorage.count > 0))){
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/${parseInt(localStorage.count)}`;
+    if (load == "auto"){
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/1`;
+        console.log("Gonna fetch " + fetchTarget);
+
+    } else if ((load == "manual") && (favSub != '') && (count > 0)){
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
+        console.log("Gonna fetch " + fetchTarget);
+
     } else {
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
+        console.log("Gonna fetch " + fetchTarget);
+
     };
-    console.log("Gonna fetch " + fetchTarget);
     toast(`configuration updated`, "#00ff80")
-};
-function storeLocal(favSub, count, quality, nsfw, load){
-    localStorage.favSub = favSub;
-    localStorage.count = count;
-    localStorage.quality = quality;
-    localStorage.nsfw = nsfw;
-    localStorage.load = load;
 };
