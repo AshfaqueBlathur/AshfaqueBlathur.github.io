@@ -6,8 +6,7 @@ font-family: 'Poppins', sans-serif;
     --bgc1: #2e416b;
     --bgc2: #26312d;
     --fabbg: #493650;
-    --txtc-1: #ffffff;
-    --txtc-2: #000000;
+    --txtc: #ffffff;
 }
 *{
     margin: 0;
@@ -17,13 +16,14 @@ font-family: 'Poppins', sans-serif;
 body{
     width: 100%;
     background-color: var(--bgc1);
-    color: var(--txtc-1);
+    color: var(--txtc);
     font-family: 'Poppins', sans-serif;
 }
 header{
     width: 100%;
+    min-height: 100vh;
     background-color: var(--bgc2);
-    color: var(--txtc-2);
+    color: var(--txtc);
     z-index: 100;
 }
 header .wrapper{
@@ -34,15 +34,59 @@ header .wrapper{
 }
 header .wrapper .img img{
     display: block;
-    width: 200px;
-    height: 200px;
+    width: 140px;
+    height: 140px;
     margin: 20px 10px 20px 40px;
-    border: 5px #ffffff solid;
-    border-radius: 50%;
+    background-color: #424242;
+    border-radius: 50% 50% 50% 0;
+    box-shadow: #ffffff -1px 1px 2px,
+                #000000 -3px 3px 4px  ;
 }
 header .wrapper .name{
-    text-align: left;
+    text-align: center;
     color: var(--txtc-1)
+}
+.name h1{
+    line-height: 40px;
+    letter-spacing: 2px;
+}
+.name p{
+    line-height: 20px;
+    letter-spacing: 5px;
+}
+.describes{
+    text-align: justify;
+    width: 90%;
+    margin: 20px 5%;
+}
+.social{
+    width: 98%;
+    margin: 20px 1%;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+.connect{
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0;
+    text-align: center;
+    letter-spacing: 5px;
+}
+.social-icon{
+    width: 40px;
+    height: 40px;
+    background-color: #424242;
+    border-radius: 50% 0 50% 50%;
+    padding: 8px;
+    box-shadow: #ffffff 1px 1px 2px,
+                #000000 3px 3px 4px  ;
+}
+.social-icon img{
+    width: 24px;
+    height: 24px;
 }
 #toastblock p{
     position: fixed;
@@ -71,9 +115,11 @@ header .wrapper .name{
         filter: hue-rotate(360deg);
     }
 }
+
+
+
 .fun{
     width: 100%;
-    min-height: 100vh;
 }
 #memes-ul{
     width: 100%;
@@ -119,41 +165,33 @@ header .wrapper .name{
     background-color: #ffee003a;
     color: #ffffff;
 }
-.load{
-    cursor: pointer;
-    display: block;
-    background-color: #2e416b;
-    border: 2px solid #e0d433;
-    color: #e0d433;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    font-size: medium;
-    width: 100%;
-    height: 40px;
-    padding: 5px;
-    transition: 500ms;
-}
-.load:focus, .load:hover{
-    filter: saturate(10);
-    letter-spacing: 15px;
-}
+
 .fabs{
     position: fixed;
-    bottom: 50px;
+    bottom: 10px;
     right: 10px;
 }
 .fabs p{
     cursor: pointer;
     display: block;
     z-index: 100;
-    background-color: var(--fabbg);
-    box-shadow: #0d0b25 -2px 2px 5px;
-    font-size: 25px;
-    height: 35px;
-    border-radius: 5px;
-    padding: 0 10px;
+    background-color: #04140e;
+    box-shadow: #ffffff -1px 1px 2px,
+                #000000 -3px 3px 4px  ;
+    font-size: 30px;
+    height: 40px;
+    width: 50px;
+    border-radius: 10px 0 0 10px;
+    margin: 10px 0;
     text-align: center;
 }
+.fabs p:last-child{
+    font-size: 25px;
+    border-radius: 10px 0 0 0;
+}
+
+
+
 .meme-config{
     position: fixed;
     bottom: 0;
@@ -162,7 +200,6 @@ header .wrapper .name{
     transition: 300ms;
     text-transform: uppercase;
     text-align: center;
-    overflow-y: scroll;
 }
 .config{
     width: 90%;
@@ -180,9 +217,9 @@ header .wrapper .name{
     display: block;
     width: 50px;
     margin: 0 calc((100% - 50px) / 2);
-    margin-top: 20vh;
+    margin-top: 20px;
 }
-.count, .select-sub, .quality{
+.count, .select-sub, .quality, .nsfw, .loading{
     width: 100%;
     margin: 5px 0;
 }
@@ -195,6 +232,7 @@ header .wrapper .name{
 }
 .count input, .select-sub input{
     width: 100%;
+    min-height: 35px;
 }
 .quality div{
     display: block;
@@ -205,28 +243,28 @@ header .wrapper .name{
     color: #ffd000d2;
     text-decoration: underline;
 }
+
 .meme-config button{
-    display: block;
-    width: 100%;
-    height: 40px;
-    border: 2px black solid;
-    position: relative;
-    bottom: 0;
     cursor: pointer;
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px;
+    height: 30px;
+    padding: 2px;
+    background-color: #4d5669;
+    border: 2px solid #f8ea22;
+    color: #64e033;
+    letter-spacing: 5px;
     text-transform: uppercase;
+    font-size: medium;
+    transition: 500ms;
 }
-/* footer{
-    width: 100%;
-    height: 100px;
-    background-color: var(--bgc2);
-    z-index: 100;
-} */
 @media only screen and (max-width: 640px){
     header .wrapper .img{
         width: 100%;
     }
     header .wrapper .img img{
-        margin: 0 calc((100% - 200px) / 2);
+        margin: 0 calc((100% - 140px) / 2);
         margin-top: 20px;
     }
     header .wrapper .name{

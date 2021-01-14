@@ -13,8 +13,20 @@
                 <img src="https://scontent.fcok10-1.fna.fbcdn.net/v/t1.0-1/p240x240/81285711_588876261960133_4313461231903047680_o.jpg?_nc_cat=111&ccb=2&_nc_sid=7206a8&_nc_ohc=FD_O68iomUIAX95ejUc&_nc_ht=scontent.fcok10-1.fna&tp=6&oh=0def4ebeafdf0d8847ef4d0ca7644e23&oe=6025ADA5" alt="ashfaque">
             </div>
             <div class="name">
-                <h1>Ashfaque Blathur</h1>
-                <h4>Lorem ipsum dolor sit amet consectetur.</h4>
+                <h1>ashfaque</h1>
+                <p>Blathur</p>
+            </div>
+            <section class="describes">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe, alias? Exercitationem mollitia inventore nostrum officia laboriosam incidunt ullam. Dolor a fugiat sit vero tenetur aperiam, illo eos sunt accusamus! Dicta, voluptate numquam.</p>
+            </section>
+            <div class="social">
+                <p class="connect">Connect with me</p>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Instagram_colored_svg_1_5296765.webp" alt="instagram"></a>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_Colored_Facebook3_svg_5365678.png" alt="facebook"></a>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Reddit3_colored_svg_5296506.png" alt="reddit"></a>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Twitter_colored_svg_5296514.png" alt="twitter"></a>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Linkedin_unofficial_colored_svg_5296501.webp" alt="linkdin"></a>
+                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Whatsapp2_colored_svg_5296520.png" alt="whatsapp"></a>
             </div>
         </div>
     </header>
@@ -25,11 +37,9 @@
             <ul id="memes-ul"></ul>
         </div>
     </div>
-    <div>
-        <button type="button" class="load" onclick="meme()">load more</button>
-    </div>
     <div class="fabs">
-        <p onclick="memeConfig()">🔨</p>
+        <p onclick="memeConfig()">⚙</p>
+        <p onclick="meme()">😆</p>
     </div>
     <div class="meme-config" style="display: none;">
         <form class="config" id="config">
@@ -63,8 +73,12 @@
                 </div>
             </div>
             <div class="nsfw">
-                <label for="nsfw">blur nsfw/spoiler contents.</label>
+                <label for="nsfw">blur nsfw/spoiler contents</label>
                 <input type="checkbox" name="nsfw" id="nsfw">
+            </div>
+            <div class="loading">
+                <label for="load">automatically load memes</label>
+                <input type="checkbox" name="load" id="load">
             </div>
         </form>
         <button type="button" onclick="closeConfig()">save & exit</button>

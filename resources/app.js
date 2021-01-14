@@ -25,7 +25,18 @@ function meme(){
         toast(`Error getting memes..<br>${err}`, "#ff2929");
     })
 };
-window.onload = meme();
+//window.onload = meme();
+var fire = true;
+window.onscroll = function(ev){
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset);
+    let bodyHight = Math.ceil(document.body.offsetHeight);
+    if (fire && (windowHight >= bodyHight)){
+        fire = false;
+        meme();
+    } else if (!fire && (windowHight < bodyHight)){
+        fire = true;
+    };
+};
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
@@ -76,19 +87,18 @@ function showCount(){
 updateConfigForm();
 function updateConfigForm(){
     configForm[0].value = localStorage.favSub;
-    configForm[1].value = parseInt(localStorage.quality);
-    countShower.innerText = localStorage.quality;
+    configForm[1].value = (localStorage.count);
+    countShower.innerText = localStorage.count;
+    //configForm[].value = (localStorage.);
+
+
 }
 function memeConfig(){
     configMenu.style.display = 'block';
 };
 function closeConfig(){
     configMenu.style.display = 'none';
-    if (configForm[0].value == ''){
-        var favSub = '';
-    } else {
-        var favSub = configForm[0].value;
-    }
+    var favSub = configForm[0].value;
     var count = configForm[1].value;
     if (configForm[2].checked){
         var quality = 0;
@@ -104,20 +114,28 @@ function closeConfig(){
     } else {
         var nsfw = "show";
     }; 
-    storeLocal(favSub, count, quality, nsfw);
+    if (configForm[7].checked){
+        var load = "auto";
+    } else {
+        var load = "manual";
+    }; 
+    storeLocal(favSub, count, quality, nsfw, load);
     updateFetchTarget();
 };
 function updateFetchTarget(){
-    if (localStorage.favSub != ''){
+    if (localStorage.load == "auto"){
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/1`;
+    } else if ((localStorage.load == "manual") && (localStorage.favSub != '')){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/${parseInt(localStorage.count)}`;
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
     };
     console.log("Gonna fetch " + fetchTarget);
 };
-function storeLocal(favSub, count, quality, nsfw){
+function storeLocal(favSub, count, quality, nsfw, load){
     localStorage.favSub = favSub;
     localStorage.count = count;
     localStorage.quality = quality;
     localStorage.nsfw = nsfw;
+    localStorage.load = load;
 };
