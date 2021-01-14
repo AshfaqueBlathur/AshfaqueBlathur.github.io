@@ -21,7 +21,7 @@ body{
 }
 header{
     width: 100%;
-    min-height: 100vh;
+    min-height: 110vh;
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -38,7 +38,7 @@ header .wrapper .img img{
     height: 140px;
     margin: 20px 10px 20px 40px;
     background-color: #424242;
-    border-radius: 50% 50% 50% 0;
+    border-radius: 50% 40% 50% 0%;
     box-shadow: #ffffff -1px 1px 2px,
                 #000000 -3px 3px 4px  ;
 }
@@ -60,8 +60,8 @@ header .wrapper .name{
     margin: 20px 5%;
 }
 .social{
-    width: 98%;
-    margin: 20px 1%;
+    width: 60%;
+    margin: 20px 20%;
     padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
@@ -71,7 +71,7 @@ header .wrapper .name{
 .connect{
     display: inline-block;
     width: 100%;
-    margin: 10px 0;
+    margin: 30px 0;
     text-align: center;
     letter-spacing: 5px;
 }
@@ -262,12 +262,15 @@ header .wrapper .name{
     }
     header .wrapper .img img{
         margin: 0 calc((100% - 140px) / 2);
-        margin-top: 20px;
+        margin-top: 60px;
     }
     header .wrapper .name{
         width: 100%;
         text-align: center;
         margin: 10px 0;
     }
-
+    .social{
+        width: 80%;
+        margin: 20px 10%;
+    }
 }

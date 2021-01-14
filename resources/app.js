@@ -95,7 +95,7 @@ function updateConfigForm(){
     configForm[0].value = localStorage.favSub;
     configForm[1].value = (localStorage.count);
     countShower.innerText = localStorage.count;
-    if ((localStorage.favSub || localStorage.count) == "undefined"){
+    if (((localStorage.favSub || localStorage.count) == ("undefined")) || (localStorage.count == 0)){
         configMenu.style.display = 'block';
     };
 };
@@ -134,7 +134,7 @@ function closeConfig(){
 function updateFetchTarget(){
     if (localStorage.load == "auto"){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/1`;
-    } else if ((localStorage.load == "manual") && (localStorage.favSub != '')){
+    } else if ((localStorage.load == "manual") && (localStorage.favSub != '') && (parseInt(localStorage.count > 0))){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${localStorage.favSub}/${parseInt(localStorage.count)}`;
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
