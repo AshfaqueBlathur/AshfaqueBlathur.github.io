@@ -169,7 +169,7 @@ header .wrapper .name{
 .fabs{
     position: fixed;
     bottom: 10px;
-    right: 10px;
+    right: 0;
 }
 .fabs p{
     cursor: pointer;
@@ -214,6 +214,7 @@ header .wrapper .name{
 .config h3{
     color: #e0d433;
     text-decoration: underline;
+    margin-top: 60px;
 }
 .count, .select-sub, .quality, .nsfw, .loading{
     width: 100%;
@@ -243,8 +244,8 @@ header .wrapper .name{
 .meme-config button{
     cursor: pointer;
     display: block;
-    width: calc(100% - 20px);
-    margin: 10px;
+    width: calc(100% - 100px);
+    margin: 0 50px;
     height: 30px;
     max-height: 10vh;
     padding: 2px;
@@ -255,6 +256,12 @@ header .wrapper .name{
     text-transform: uppercase;
     font-size: medium;
     transition: 500ms;
+}
+.free{
+    height: 130px;
+    width: 100%;
+    background-color: #050307;
+    padding: 20px 80px 20px 20px;
 }
 @media only screen and (max-width: 640px){
     header .wrapper .img{

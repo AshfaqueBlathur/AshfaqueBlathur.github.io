@@ -87,16 +87,30 @@ function showCount(){
 };
 updateConfigForm();
 function updateConfigForm(){
-    if (localStorage.load == "auto"){
-        loader.style.display = 'none';
-    } else {
-        loader.style.display = 'inline-block';
-    };
     configForm[0].value = localStorage.favSub;
     configForm[1].value = (localStorage.count);
     countShower.innerText = localStorage.count;
     if (((localStorage.favSub || localStorage.count) == ("undefined")) || (localStorage.count == 0)){
         configMenu.style.display = 'block';
+    };
+    if (localStorage.load == "auto"){
+        loader.style.display = 'none';
+    } else {
+        loader.style.display = 'inline-block';
+    };
+    let quality = localStorage.quality;
+    if (quality == '0'){
+        configForm[2].checked;
+    } else if (quality == '1'){
+        configForm[3].checked;
+    } else if (quality == '4'){
+        configForm[4].checked;
+    } else if (quality == '5'){
+        configForm[5].checked;
+    } else if (localStorage.nsfw == 'blur'){
+        configForm[6].checked;
+    } else if (localStorage.load == 'auto'){
+        configForm[7].checked;
     };
 };
 function memeConfig(){
@@ -140,6 +154,7 @@ function updateFetchTarget(){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${parseInt(localStorage.count)}`;
     };
     console.log("Gonna fetch " + fetchTarget);
+    toast(`configuration updated`, "#00ff80")
 };
 function storeLocal(favSub, count, quality, nsfw, load){
     localStorage.favSub = favSub;
