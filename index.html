@@ -39,11 +39,11 @@
     </div>
     <div class="fabs">
         <p onclick="memeConfig()">⚙</p>
-        <p onclick="meme()">😆</p>
+        <p id="meme-loader" onclick="meme()">😆</p>
     </div>
     <div class="meme-config" style="display: none;">
         <form class="config" id="config">
-            <h3><img src="resources/img/meme-face.ico" alt="meme-face">configure the meme requests.</h3>
+            <h3>configure the meme requests.</h3>
             <div class="select-sub">
                 <label for="subreddit">type your favourit subreddit</label>
                 <input type="text" name="subreddit" id="subreddit">
@@ -64,7 +64,7 @@
                     <label for="2">low quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="3" checked>
+                    <input type="radio" name="quality" id="3">
                     <label for="3">medium quality</label>
                 </div>
                 <div>
@@ -83,14 +83,6 @@
         </form>
         <button type="button" onclick="closeConfig()">save & exit</button>
     </div>
-    <!-- <footer>
-        <div class="social">
-            <a href="http://"></a>
-            <a href="http://"></a>
-            <a href="http://"></a>
-            <a href="http://"></a>
-        </div>
-    </footer> -->
     <script src="resources/app.js"></script>
 </body>
 </html>

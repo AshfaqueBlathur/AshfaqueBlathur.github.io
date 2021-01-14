@@ -30,7 +30,7 @@ var fire = true;
 window.onscroll = function(ev){
     let windowHight = Math.ceil(window.innerHeight + window.pageYOffset);
     let bodyHight = Math.ceil(document.body.offsetHeight);
-    if (fire && (windowHight >= bodyHight)){
+    if (fire && (windowHight >= bodyHight) && (load == "auto")){
         fire = false;
         meme();
     } else if (!fire && (windowHight < bodyHight)){
@@ -81,21 +81,28 @@ function inputMeme(resObj){
 const configMenu = document.querySelector(".meme-config");
 const configForm = document.getElementById('config');
 const countShower = document.getElementById("now-selected");
+const loader = document.getElementById("meme-loader");
 function showCount(){
     countShower.innerText = configForm[1].value;
 };
 updateConfigForm();
 function updateConfigForm(){
+    if (localStorage.load == "auto"){
+        loader.style.display = 'none';
+    } else {
+        loader.style.display = 'inline-block';
+    };
     configForm[0].value = localStorage.favSub;
     configForm[1].value = (localStorage.count);
     countShower.innerText = localStorage.count;
-    //configForm[].value = (localStorage.);
-
-
-}
+    if ((localStorage.favSub || localStorage.count) == "undefined"){
+        configMenu.style.display = 'block';
+    };
+};
 function memeConfig(){
     configMenu.style.display = 'block';
 };
+var load;
 function closeConfig(){
     configMenu.style.display = 'none';
     var favSub = configForm[0].value;
@@ -115,9 +122,11 @@ function closeConfig(){
         var nsfw = "show";
     }; 
     if (configForm[7].checked){
-        var load = "auto";
+        load = "auto";
+        loader.style.display = 'none';
     } else {
-        var load = "manual";
+        load = "manual";
+        loader.style.display = 'inline-block';
     }; 
     storeLocal(favSub, count, quality, nsfw, load);
     updateFetchTarget();
