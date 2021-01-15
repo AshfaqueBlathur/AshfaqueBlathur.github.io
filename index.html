@@ -21,12 +21,12 @@
             </section>
             <div class="social">
                 <p class="connect">Connect with me</p>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Instagram_colored_svg_1_5296765.webp" alt="instagram"></a>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_Colored_Facebook3_svg_5365678.png" alt="facebook"></a>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Reddit3_colored_svg_5296506.png" alt="reddit"></a>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Twitter_colored_svg_5296514.png" alt="twitter"></a>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Linkedin_unofficial_colored_svg_5296501.webp" alt="linkdin"></a>
-                <a class="social-icon" href="http://"><img src="resources/img/soci-ons/iconfinder_1_Whatsapp2_colored_svg_5296520.png" alt="whatsapp"></a>
+                <a class="social-icon" href="https://www.instagram.com/ashfaa_que?r=nametag"><img src="resources/img/soci-ons/iconfinder_1_Instagram_colored_svg_1_5296765.webp" alt="instagram"></a>
+                <a class="social-icon" href="https://www.facebook.com/ashfaque.aspu.5"><img src="resources/img/soci-ons/iconfinder_Colored_Facebook3_svg_5365678.png" alt="facebook"></a>
+                <a class="social-icon" href="https://www.reddit.com/u/_ashfa_que_?utm_medium=android_app&utm_source=share"><img src="resources/img/soci-ons/iconfinder_1_Reddit3_colored_svg_5296506.png" alt="reddit"></a>
+                <a class="social-icon" href="https://mobile.twitter.com/ashfaqueppbtr"><img src="resources/img/soci-ons/iconfinder_1_Twitter_colored_svg_5296514.png" alt="twitter"></a>
+                <a class="social-icon" href="https://www.linkedin.com/mwlite/in/ashfaque-pp-200b48182"><img src="resources/img/soci-ons/iconfinder_1_Linkedin_unofficial_colored_svg_5296501.webp" alt="linkdin"></a>
+                <a class="social-icon" href="https://wa.link/kzzjhc"><img src="resources/img/soci-ons/iconfinder_1_Whatsapp2_colored_svg_5296520.png" alt="whatsapp"></a>
             </div>
         </div>
     </header>
@@ -38,8 +38,8 @@
         </div>
     </div>
     <div class="fabs">
-        <p id="open-config" onclick="openConfig()">⚙</p>
-        <p id="meme-loader" onclick="loadMeme()">😆</p>
+        <p class="open-config" onclick="openConfig()">⚙</p>
+        <p class="meme-loader" onclick="loadMeme()">😆</p>
     </div>
     <div class="meme-config" style="display: none;">
         <form class="config" id="config">
@@ -50,38 +50,39 @@
                 <p>please claer the field if cant get any memes anymore</p>
             </div>
             <div class="count">
-                <label for="count">drag to select the number of memes.<p>now selected: <span id="now-selected">0</span></p></label>
-                <input type="range" name="number-of-memes" id="count" min="1" max="10" oninput="showCount()">
+                <label for="count">drag to select the number of memes.<p id="now-selected"></p></label>
+                <input type="range" name="number_of_memes" id="count" min="1" max="10" oninput="showCount()">
+                <p id="change_range" onclick="changeRange()">force celect upto 50 meme</p>
             </div>
             <div class="quality">
                 <p>select the meme quality</p>
                 <div>
-                    <input type="radio" name="quality" id="1">
+                    <input type="radio" name="quality" id="quality_1" required>
                     <label for="1">extra low quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="2" checked>
+                    <input type="radio" name="quality" id="quality_2">
                     <label for="2">low quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="3">
+                    <input type="radio" name="quality" id="quality_3">
                     <label for="3">medium quality</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="4">
+                    <input type="radio" name="quality" id="quality_4">
                     <label for="4">high quality</label>
                 </div>
             </div>
             <div class="nsfw">
                 <label for="nsfw">blur nsfw/spoiler contents</label>
-                <input type="checkbox" name="nsfw" id="nsfw">
+                <input type="checkbox" name="nsfw" id="nsfw" checked>
             </div>
             <div class="loading">
                 <label for="load">automatically load memes</label>
-                <input type="checkbox" name="load" id="load">
+                <input type="checkbox" name="load" id="load" checked>
             </div>
+            <button type="submit">save & exit</button>
         </form>
-        <button type="button" onclick="closeConfig()">save & exit</button>
     </div>
     <div class="free">
         <p>uses Meme api by <a href="http://github.com/D3vd/">D3vd</a> for fetching meme.</p>
