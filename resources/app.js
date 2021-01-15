@@ -74,6 +74,7 @@ function inputMeme(resObj){
                                 <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
                                 <p url="${preview[2]}" onclick="changeRes(this);">2x</p>
                                 <p url="${preview[3]}" onclick="changeRes(this);">3x</p>
+                                <p url="${url}" onclick="changeRes(this);">HD</p>
                             </div>
                         </div>
                         <div class="meme-detail">
@@ -81,9 +82,9 @@ function inputMeme(resObj){
                                 <span class="title">${title}</span>
                                 by <span class="author">${author}</span>
                                 from <span class="subreddit">${subreddit}</span>
-                                subreddit with <span class="ups">${ups}</span> upvotes
+                                subreddit with <span class="ups">${ups}</span> votes
                             </p>
-                            <p class="sourece">Source: <a href="${postLink}">${postLink}</a> & <a href="${url}">HD meme</a></p>
+                            <p class="sourece">Source: <a href="${postLink}">${postLink}</a></p>
                         </div>`
         memeUl.appendChild(li);
     });
@@ -92,8 +93,8 @@ function inputMeme(resObj){
 // resolution changer
 function changeRes(el){
     let url = el.getAttribute('url');
-    console.log(el.parentElement.previousElementSibling);
     el.parentElement.previousElementSibling.setAttribute('src', url);
+    toast(`loading in the selected quality`, "#00ff80", "#fff", 1000);
 };
 
 
@@ -156,7 +157,7 @@ function updateFetchTarget(){
     if (load == "auto"){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/2`;
         //console.log("Gonna fetch " + fetchTarget);
-    } else if ((load == "manual") && (favSub != '') && (count > 0)){
+    } else if ((load == "manual") && (favSub != ('' || undefined)) && (count > 0)){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
         //console.log("Gonna fetch " + fetchTarget);
     } else {

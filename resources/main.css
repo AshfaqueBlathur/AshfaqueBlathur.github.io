@@ -21,7 +21,7 @@ body{
 }
 header{
     width: 100%;
-    min-height: 110vh;
+    min-height: calc(100vh - 130px);
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -32,36 +32,58 @@ header .wrapper{
     flex-wrap: wrap;
     align-items: center;
 }
-header .wrapper .img img{
-    display: block;
-    width: 140px;
-    height: 140px;
-    margin: 20px 10px 20px 40px;
-    background-color: #424242;
-    border-radius: 50% 40% 50% 0%;
-    box-shadow: #ffffff -1px 1px 2px,
-                #000000 -3px 3px 4px  ;
+.head-contain{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 10vh 10% 0 10%; 
 }
-header .wrapper .name{
-    text-align: center;
-    color: var(--txtc-1)
-}
-.name h1{
-    line-height: 40px;
-    letter-spacing: 2px;
-}
-.name p{
-    line-height: 20px;
-    letter-spacing: 5px;
-}
+    .head-contain .img{
+        width: 140px;
+        height: 140px;
+    }
+    .head-contain .img img{
+        width: 100%;
+        height: 100%;
+        background-color: #424242;
+        box-shadow: #ffffff -1px 1px 2px,
+                    #000000 -3px 3px 4px  ;
+        animation: aWriterOuter 2s infinite;
+    }
+    @keyframes aWriterOuter{
+        0%{
+            border-radius: 50%;
+        }
+        100%{
+            border-radius: 50% 40% 0 60%;
+        }
+    }
+    header .wrapper .name{
+        color: var(--txtc-1);
+        width: calc(100% - 140px);
+    }
+        .name h1{
+            padding: 80px 0 0 10px;
+            line-height: 40px;
+            letter-spacing: 2px;
+        }
+        .name p{
+            padding: 0 0 0 10px;
+            line-height: 20px;
+            letter-spacing: 5px;
+        }
 .describes{
-    text-align: justify;
-    width: 90%;
-    margin: 20px 5%;
+    text-align: center;
+    width: 80%;
+    margin: 20px 10%;
 }
+    .describes p a:any-link{
+        color: rgb(255, 217, 92);
+        text-decoration: none;
+    }
 .social{
     width: 60%;
-    margin: 20px 20%;
+    margin: 40px 20%;
     padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
@@ -73,7 +95,8 @@ header .wrapper .name{
     width: 100%;
     margin: 30px 0;
     text-align: center;
-    letter-spacing: 5px;
+    letter-spacing: .5rem;
+    text-transform: uppercase;
 }
 .social-icon{
     width: 40px;
@@ -126,7 +149,7 @@ header .wrapper .name{
     #memes-ul li{
         width: 98%;
         list-style: none;
-        margin: 10px 1%;
+        margin: 5px 1%;
     }
     .meme-img{
         width: 100%;
@@ -134,16 +157,19 @@ header .wrapper .name{
     .meme-img img{
         width: 100%;
     }
+    
+    
     .other-qualities{
-        width: 50%;
+        width: 10%;
+        height: 120px;
         float: right;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-around;
+        display: block;
+        text-align: right;
     }
         .other-qualities p{
-            width: 24%;
+            width: 100%;
+            margin: 5px 0;
+            height: 18px;
             color: #fff;
             font-size: xx-small;
             background-color: #3732579d;
@@ -151,36 +177,39 @@ header .wrapper .name{
             border-radius: 5px;
             cursor: pointer;
         }
+
     .blur{
-        filter: blur(20px);
+        filter: blur(10px);
     }
     .meme-detail{
-        width: 100%;
-        font-size: x-small;
+        width: 85%;
+        min-height: 120px;
     }
-    .title{
-        display: inline-block;
-        font-size: 18px;
-        font-weight: 600;
-        width: 100%;
-        color: #ff9595;
-    }
-    .author{
-        color: #33e089;
-    }
-    .subreddit{
-        color: #e0d433;
-    }
-    .ups{
-        color: #e03333;
-    }
-    .sourece a:any-link{
-        font-style: italic;
-        font-weight: 400;
-        font-size: smaller;
-        background-color: #ffee003a;
-        color: #ffffff;
-    }
+        .title{
+            display: inline-block;
+            font-weight: 600;
+            width: 100%;
+            color: #ff9595;
+        }
+        .author{
+            color: #33e089;
+        }
+        .subreddit{
+            color: #e0d433;
+        }
+        .ups{
+            color: #82d300;
+            background-color: #18181888;
+            padding: 0 5px;
+            border-radius: 5px;
+        }
+        .sourece a:any-link{
+            font-style: italic;
+            font-weight: 400;
+            font-size: smaller;
+            background-color: #ffee003a;
+            color: #ffffff;
+        }
 
 .fabs p{
     cursor: pointer;
