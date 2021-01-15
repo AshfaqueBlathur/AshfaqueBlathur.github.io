@@ -98,7 +98,7 @@ header .wrapper .name{
     font-weight: 600;
     font-size: smaller;
     text-align: center;
-    animation: toast 3s forwards ease-out;
+    animation: toast forwards ease-out;
 }
 @keyframes toast{
     0%,100%{

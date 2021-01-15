@@ -3,10 +3,10 @@ const toastBlock = document.getElementById("toastblock");
 function clearBlock(){
     toastBlock.innerHTML = "";
 };
-function toast(msg, bg){
-    let toastMsg = `<p style="background-color: ${bg};">${msg}</p>`;
+function toast(msg, bg, c, t){
+    let toastMsg = `<p style="background-color: ${bg}; color: ${c}; animation-duration: ${t}ms;">${msg}</p>`;
     toastBlock.innerHTML = toastMsg;
-    setTimeout(clearBlock , 3000);
+    setTimeout(clearBlock , t);
 };
 
 
@@ -21,14 +21,15 @@ function loadMeme(){
     })
     .catch(err => {
         console.log(err);
-        toast(`Error getting memes..<br>${err}`, "#ff2929");
+        toast(`Error getting memes..<br>${err}`, "#ff2929", "#fff", 2000);
     })
 };
 
 var fire = true;
-window.onscroll = function(ev){
-    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset);
+window.onscroll = function(){
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 130;
     let bodyHight = Math.ceil(document.body.offsetHeight);
+    //console.log(windowHight, bodyHight);
     if (fire && (windowHight >= bodyHight) && (load == "auto")){
         fire = false;
         loadMeme();
@@ -43,7 +44,7 @@ const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
     let count = resObj.count,
         memes = resObj.memes;
-    toast(`Got ${count} memes..`, "#00ff80");
+    toast(`Got ${count} memes..`, "#00ff80", "#000", 2000);
     memes.forEach(meme => {
         let postLink = meme.postLink,
             subreddit = meme.subreddit,
@@ -135,5 +136,5 @@ function updateFetchTarget(){
         console.log("Gonna fetch " + fetchTarget);
 
     };
-    toast(`configuration updated`, "#00ff80")
+    toast(`configuration updated`, "#00ff80", "#000", 2000)
 };
