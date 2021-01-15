@@ -93,7 +93,7 @@ header .wrapper .name{
     display: block;
     width: 100%;
     min-height: 30px;
-    padding: 5px 10px;
+    padding: 0 10px;
     color: black;
     font-weight: 600;
     font-size: smaller;
@@ -134,12 +134,29 @@ header .wrapper .name{
     .meme-img img{
         width: 100%;
     }
+    .other-qualities{
+        width: 50%;
+        float: right;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+        .other-qualities p{
+            width: 24%;
+            color: #fff;
+            font-size: xx-small;
+            background-color: #3732579d;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     .blur{
         filter: blur(20px);
     }
     .meme-detail{
         width: 100%;
-        font-size: smaller;
+        font-size: x-small;
     }
     .title{
         display: inline-block;

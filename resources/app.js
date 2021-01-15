@@ -13,23 +13,27 @@ function toast(msg, bg, c, t){
 // Fetch Meme
 var fetchTarget;
 function loadMeme(){
-    toast(`started fetching memes..`, "#fff", "#000", 1000);
-    fetch(fetchTarget)
-    .then(res => {
-        if (res.ok){
-            res.json().then(res => inputMeme(res))
-        };
-    })
-    .catch(err => {
-        console.log(err);
-        toast(`error getting memes..<br>${err}`, "#ff2929", "#fff", 2000);
-    })
+    if (quality == undefined){
+        openConfig();
+    } else {
+        toast(`started fetching memes..`, "#000", "#fff", 1000);
+        fetch(fetchTarget)
+        .then(res => {
+            if (res.ok){
+                res.json().then(res => inputMeme(res))
+            };
+        })
+        .catch(err => {
+            console.log(err);
+            toast(`error getting memes..<br>${err}`, "#ff2929", "#000", 2000);
+        });
+    };
 };
 
 // auto loader
 var fire = true;
 window.onscroll = function(){
-    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 100;
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 130;
     let bodyHight = Math.ceil(document.body.offsetHeight);
     //console.log(windowHight, bodyHight);
     if (fire && (windowHight >= bodyHight) && (load == "auto")){
@@ -65,6 +69,12 @@ function inputMeme(resObj){
         };
         li.innerHTML = `<div class="meme-img">
                             <img class="${nsfwClass}" src="${preview[quality]}" alt="meme from reddit by ${author}">
+                            <div class="other-qualities">
+                                <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
+                                <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
+                                <p url="${preview[2]}" onclick="changeRes(this);">2x</p>
+                                <p url="${preview[3]}" onclick="changeRes(this);">3x</p>
+                            </div>
                         </div>
                         <div class="meme-detail">
                             <p class="detail">
@@ -77,6 +87,13 @@ function inputMeme(resObj){
                         </div>`
         memeUl.appendChild(li);
     });
+};
+
+// resolution changer
+function changeRes(el){
+    let url = el.getAttribute('url');
+    console.log(el.parentElement.previousElementSibling);
+    el.parentElement.previousElementSibling.setAttribute('src', url);
 };
 
 
@@ -94,7 +111,7 @@ var favSub, count, quality, nsfw, load;
 function openConfig(){
     configMenu.style.display = 'block';
 };
-openConfig();
+
 const rangeExpnter = document.getElementById('change_range');
 function changeRange(){
     //console.log(rangeExpnter)
@@ -137,17 +154,14 @@ configForm.addEventListener('submit', function(e){
 // update url
 function updateFetchTarget(){
     if (load == "auto"){
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/1`;
-        console.log("Gonna fetch " + fetchTarget);
-
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/2`;
+        //console.log("Gonna fetch " + fetchTarget);
     } else if ((load == "manual") && (favSub != '') && (count > 0)){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
-
+        //console.log("Gonna fetch " + fetchTarget);
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
-
+        //console.log("Gonna fetch " + fetchTarget);
     };
-    toast(`configuration updated. ${favSub.length? 'will fetch meme from ' + favSub : ''}`, "#00ff80", "#000", 2000)
+    toast(`configuration updated.<br>will fetch ${load == "auto" ? 2 : count} meme ${favSub.length? 'from ' + favSub : ''}<br>and will serve with ${quality}x quality`, "#00ff80", "#000", 3000)
 };
