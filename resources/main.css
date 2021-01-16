@@ -21,7 +21,7 @@ body{
 }
 header{
     width: 100%;
-    min-height: calc(100vh - 130px);
+    min-height: 100vh;
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -35,8 +35,8 @@ header .wrapper{
 .head-contain{
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
-    margin: 10vh 10% 0 10%; 
+    width: 70%;
+    margin: 10vh 15% 0 15%; 
 }
     .head-contain .img{
         width: 140px;
@@ -216,7 +216,7 @@ header .wrapper{
     display: block;
     position: fixed;
     height: 50px;
-    width: 60px;
+    width: 50px;
     text-align: center;
     background-color: #27644e;
     z-index: 90;
@@ -226,7 +226,7 @@ header .wrapper{
     left: 0;
     font-size: 35px;
     padding: 0 0 10px 0;
-    border-radius: 0 10px 0 0;
+    border-radius: 10px 10px 10px 0;
     box-shadow: #ffffff 1px 0 2px,
                 #000000 3px 0 4px;
 }
@@ -235,7 +235,7 @@ header .wrapper{
     right: 0;
     font-size: 30px;
     padding: 5px 0 0 0;
-    border-radius: 10px 0 0 0;
+    border-radius: 10px 10px 0 10px;
     box-shadow: #ffffff -1px 1px 2px,
                 #000000 -3px 3px 4px;
 }
@@ -318,20 +318,28 @@ header .wrapper{
 }
 
 @media only screen and (max-width: 640px){
-    header .wrapper .img{
+    .head-contain{
         width: 100%;
+        margin: 0;
     }
-    header .wrapper .img img{
-        margin: 0 calc((100% - 140px) / 2);
-        margin-top: 60px;
-    }
-    header .wrapper .name{
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
-    }
+        .head-contain .img{
+            width: 140px;
+            height: 140px;
+            margin: 0 calc((100% - 140px) / 2);
+            margin-top: 100px;
+        }
+        header .wrapper .name{
+            width: 100%;
+            text-align: center;
+        }
+            .name h1{
+                padding: 0;
+            }
+            .name p{
+                padding: 0;
+            }
     .social{
         width: 90%;
-        margin: 20px 5%;
+        margin: 100px 5% 30px 5%;
     }
 }
