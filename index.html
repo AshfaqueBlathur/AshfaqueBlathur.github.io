@@ -11,7 +11,7 @@
         <div class="wrapper">
             <div class="head-contain">
                 <div class="img">
-                    <img src="https://scontent.fcok1-1.fna.fbcdn.net/v/t1.0-1/137231328_880224759491947_5842848630172003127_n.jpg?_nc_cat=102&ccb=2&_nc_sid=7206a8&_nc_ohc=FQI5MO0fUuYAX9Q4NhG&_nc_ht=scontent.fcok1-1.fna&oh=ef8a603e3f12c57a6dd39d7bce92b8e1&oe=60265DBB" alt="ashfaque">
+                    <img src="resources/img/ashfaque.bmp" alt="ashfaque">
                 </div>
                 <div class="name">
                     <h1>ashfaque</h1>
@@ -35,12 +35,12 @@
     </div>
     <div class="fun">
         <div class="fun-contin">
-            <ul id="memes-ul">
-
-            </ul>
+            <ul id="memes-ul"></ul>
         </div>
     </div>
     <div class="fabs">
+        <p class="auto-loader" onclick="autoLoad()">a</p>
+        <p class="to-top" onclick="toTop()">^</p>
         <p class="open-config" onclick="openConfig()">⚙</p>
         <p class="meme-loader" onclick="loadMeme()">😆</p>
     </div>
@@ -60,11 +60,11 @@
             <div class="quality">
                 <p>select the meme quality</p>
                 <div>
-                    <input type="radio" name="quality" id="quality_1" required>
+                    <input type="radio" name="quality" id="quality_1">
                     <label for="quality_1">0x (lowest)</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="quality_2">
+                    <input type="radio" name="quality" id="quality_2" checked>
                     <label for="quality_2">1x (low)</label>
                 </div>
                 <div>
@@ -75,14 +75,6 @@
                     <input type="radio" name="quality" id="quality_4">
                     <label for="quality_4">3x (high)</label>
                 </div>
-            </div>
-            <div class="nsfw">
-                <label for="nsfw">blur nsfw/spoiler contents</label>
-                <input type="checkbox" name="nsfw" id="nsfw">
-            </div>
-            <div class="loading">
-                <label for="load">automatically load memes</label>
-                <input type="checkbox" name="load" id="load">
             </div>
             <button type="submit">save & exit</button>
         </form>

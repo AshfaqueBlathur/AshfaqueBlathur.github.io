@@ -10,6 +10,13 @@ function toast(msg, bg, c, t){
 };
 
 
+// golobal vars
+var favSub,
+    count = 1,
+    quality,
+    load = true;
+
+
 // Fetch Meme
 var fetchTarget;
 function loadMeme(){
@@ -30,21 +37,6 @@ function loadMeme(){
     };
 };
 
-// auto loader
-var fire = true;
-window.onscroll = function(){
-    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 130;
-    let bodyHight = Math.ceil(document.body.offsetHeight);
-    //console.log(windowHight, bodyHight);
-    if (fire && (windowHight >= bodyHight) && (load == "auto")){
-        fire = false;
-        loadMeme();
-    } else if (!fire && (windowHight < bodyHight)){
-        fire = true;
-    };
-};
-
-
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
 function inputMeme(resObj){
@@ -62,13 +54,8 @@ function inputMeme(resObj){
             ups = meme.ups,
             preview = meme.preview,
             li = document.createElement('li');
-        if ((nsfw || spoiler) && (nsfw == "blur")){
-            var nsfwClass = "blur";
-        } else {
-            var nsfwClass = "show";
-        };
         li.innerHTML = `<div class="meme-img">
-                            <img class="${nsfwClass}" src="${preview[quality]}" alt="meme from reddit by ${author}">
+                            <img ${(nsfw || spoiler) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality]}"` : `src="${preview[quality]}"`} alt="meme from reddit by ${author}">
                             <div class="other-qualities">
                                 <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
                                 <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
@@ -108,14 +95,12 @@ function showCount(){
     countShower.innerText = `selected to lad ${configForm.number_of_memes.value} memes per request`;
 };
 
-var favSub, count, quality, nsfw, load;
 function openConfig(){
     configMenu.style.display = 'block';
 };
 
 const rangeExpnter = document.getElementById('change_range');
 function changeRange(){
-    //console.log(rangeExpnter)
     if (rangeExpnter.previousElementSibling.getAttribute('max') == '10'){
         rangeExpnter.previousElementSibling.setAttribute('max', '50');
         rangeExpnter.innerText = 'revert back to select upto 10 meme';
@@ -138,31 +123,59 @@ configForm.addEventListener('submit', function(e){
     } else if (configForm[5].checked){
         quality = 3;
     };
-    if (configForm[6].checked){
-        nsfw = "blur";
-    } else {
-        nsfw = "show";
-    }; 
-    if (configForm[7].checked){
-        load = "auto";
-    } else {
-        load = "manual";
-    }; 
     updateFetchTarget();
 });
+// to top
+function toTop(){
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"});
+        toast("window scrolled to top", "#ffc400ad", "#000", 500);
+};
+// auto loading
+function autoLoad(){
+    if (load){
+        load = false;
+        document.querySelector(".auto-loader").innerText = 'm';
+        toast("switched to manual meme loading mode", "#ffc400ad", "#000", 2000);
+    } else {
+        load = true;
+        document.querySelector(".auto-loader").innerText = 'a';
+        toast("gonna load meme on scroll", "#ffc400ad", "#000", 2000);
+    };
+};
+
+// auto loader
+var fire = true;
+window.onscroll = function(){
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 130;
+    let bodyHight = Math.ceil(document.body.offsetHeight);
+    //console.log(windowHight, bodyHight);
+    if (fire && (windowHight >= bodyHight) && load){
+        fire = false;
+        loadMeme();
+    } else if (!fire && (windowHight < bodyHight)){
+        fire = true;
+    };
+};
 
 
+// show nsfw
+function showNsfw(el){
+    let url = el.getAttribute("url");
+    el.setAttribute("src", url);
+    el.setAttribute("onclick", "");
+    el.classList.remove("blur");
+};
 // update url
 function updateFetchTarget(){
-    if (load == "auto"){
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/2`;
-        //console.log("Gonna fetch " + fetchTarget);
-    } else if ((load == "manual") && (favSub != ('' || undefined)) && (count > 0)){
+    if ((favSub != '') && (favSub != undefined)){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
-        //console.log("Gonna fetch " + fetchTarget);
+        console.log("Gonna fetch " + fetchTarget);
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
-        //console.log("Gonna fetch " + fetchTarget);
+        console.log("Gonna fetch " + fetchTarget);
     };
-    toast(`configuration updated.<br>will fetch ${load == "auto" ? 2 : count} meme ${favSub.length? 'from ' + favSub : ''}<br>and will serve with ${quality}x quality`, "#00ff80", "#000", 3000)
+    toast(`configuration updated.<br>will fetch ${load == "auto" ? 2 : count} meme ${(favSub != ('' || undefined)) ? ('from ' + favSub ) : ''}<br>and will serve with ${quality}x quality`, "#00ff80", "#000", 2000);
 };

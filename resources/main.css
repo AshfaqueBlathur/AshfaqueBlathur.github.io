@@ -18,10 +18,11 @@ body{
     background-color: var(--bgc1);
     color: var(--txtc);
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 header{
     width: 100%;
-    min-height: 100vh;
+    min-height: 110vh;
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -45,17 +46,17 @@ header .wrapper{
     .head-contain .img img{
         width: 100%;
         height: 100%;
-        background-color: #424242;
         box-shadow: #ffffff -1px 1px 2px,
                     #000000 -3px 3px 4px  ;
-        animation: aWriterOuter 2s infinite;
+        animation: aWriterOuter 10s infinite;
     }
     @keyframes aWriterOuter{
-        0%{
+        0%, 100%{
             border-radius: 50%;
         }
-        100%{
-            border-radius: 50% 40% 0 60%;
+        50%{
+            border-radius: 50% 55% 0 55%;
+            filter: saturate(0%);
         }
     }
     header .wrapper .name{
@@ -124,17 +125,16 @@ header .wrapper{
     animation: toast forwards ease-out;
 }
         @keyframes toast{
-            0%{
-                top: 10px;
+            0%, 100%{
+                top: 0;
                 display: none;
             }
             20%,80%{
                 top: 0;
                 display: block;
             }
-            100%{
-                top: -10px;
-                display: none;
+            50%{
+                filter: saturate(10%);
             }
         }
 
@@ -151,14 +151,16 @@ header .wrapper{
         list-style: none;
         margin: 5px 1%;
     }
-    .meme-img{
-        width: 100%;
-    }
-    .meme-img img{
-        width: 100%;
-    }
-    
-    
+        .meme-img{
+            width: 100%;
+        }
+            .meme-img img{
+                width: 100%;
+            }
+            .blur{
+                cursor: pointer;
+            }
+                
     .other-qualities{
         width: 10%;
         height: 120px;
@@ -178,9 +180,6 @@ header .wrapper{
             cursor: pointer;
         }
 
-    .blur{
-        filter: blur(10px);
-    }
     .meme-detail{
         width: 85%;
         min-height: 120px;
@@ -215,31 +214,54 @@ header .wrapper{
     cursor: pointer;
     display: block;
     position: fixed;
-    height: 50px;
-    width: 50px;
     text-align: center;
     background-color: #27644e;
     z-index: 90;
 }
+.auto-loader{
+    height: 40px;
+    width: 40px;
+    top: 0;
+    left: 0;
+    font-size: 30px;
+    padding: 0 0 10px 0;
+    border-radius: 0 10px 10px 10px;
+    box-shadow: #ffffff 1px 1px 2px,
+                #000000 3px 3px 4px;
+}
+.to-top{
+    height: 40px;
+    width: 40px;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    padding: 0 0 10px 0;
+    border-radius: 10px 0 10px 10px;
+    box-shadow: #ffffff -1px 1px 2px,
+                #000000 -3px 3px 4px;
+}
 .open-config{
+    height: 50px;
+    width: 50px;
     bottom: 0;
     left: 0;
     font-size: 35px;
     padding: 0 0 10px 0;
     border-radius: 10px 10px 10px 0;
-    box-shadow: #ffffff 1px 0 2px,
-                #000000 3px 0 4px;
+    box-shadow: #ffffff 1px -1px 2px,
+                #000000 3px -3px 4px;
 }
 .meme-loader{
+    height: 50px;
+    width: 50px;
     bottom: 0;
     right: 0;
-    font-size: 30px;
+    font-size: 25px;
     padding: 5px 0 0 0;
     border-radius: 10px 10px 0 10px;
-    box-shadow: #ffffff -1px 1px 2px,
-                #000000 -3px 3px 4px;
+    box-shadow: #ffffff -1px -1px 2px,
+                #000000 -3px -3px 4px;
 }
-
 
 
 .meme-config{
