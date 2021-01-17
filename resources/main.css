@@ -22,7 +22,6 @@ body{
 }
 header{
     width: 100%;
-    min-height: 110vh;
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -36,40 +35,46 @@ header .wrapper{
 .head-contain{
     display: flex;
     flex-wrap: wrap;
-    width: 70%;
-    margin: 10vh 15% 0 15%; 
+    width: 100%;
 }
     .head-contain .img{
         width: 140px;
         height: 140px;
+        margin: 0 calc((100% - 140px) / 2);
+        margin-top: 50px;
     }
     .head-contain .img img{
         width: 100%;
         height: 100%;
+        border-radius: 50%;
         box-shadow: #ffffff -1px 1px 2px,
                     #000000 -3px 3px 4px  ;
-        animation: aWriterOuter 6s infinite;
+        animation: spin 5s 1s infinite ease;
     }
-    @keyframes aWriterOuter{
+    @keyframes spin{
         0%, 100%{
-            border-radius: 50%;
+            transform: rotateY(0deg) scale(1);
         }
-        50%{
-            border-radius: 50% 55% 0 55%;
-            filter: saturate(0%);
+        10%, 30%{
+            transform: rotateY(0deg) scale(1);
+        }
+        20%{
+            transform: rotateY(180deg) scale(1.25);
         }
     }
     header .wrapper .name{
         color: var(--txtc-1);
         width: calc(100% - 140px);
+        width: 100%;
+        text-align: center;
     }
         .name h1{
-            padding: 80px 0 0 10px;
+            padding: 0;
             line-height: 40px;
             letter-spacing: 2px;
         }
         .name p{
-            padding: 0 0 0 10px;
+            padding: 0;
             line-height: 20px;
             letter-spacing: 5px;
         }
@@ -83,8 +88,8 @@ header .wrapper{
         text-decoration: none;
     }
 .social{
-    width: 60%;
-    margin: 40px 20%;
+    width: 90%;
+    margin: 100px 5% 30px 5%;
     padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
@@ -124,6 +129,7 @@ header .wrapper{
         font-weight: 600;
         font-size: small;
         text-align: center;
+        border-radius: 5px;
     }
 
 .fun{
@@ -202,29 +208,29 @@ header .wrapper{
     position: fixed;
     text-align: center;
     background-color: #27644e;
-    z-index: 90;
-    }
+    z-index: 110;
+}
     .auto-loader{
         height: 45px;
         width: 45px;
-        bottom: 60px;
-        left: 0;
+        bottom: 0;
+        left: 55px;
         font-size: 30px;
         padding: 0 0 10px 0;
         border-radius: 10px;
-        box-shadow: #ffffff 1px 1px 2px,
-                    #000000 3px 3px 4px;
+        box-shadow: #ffffff 1px -1px 2px,
+                    #000000 3px -3px 4px;
     }
     .to-top{
         height: 45px;
         width: 45px;
-        bottom: 120px;
-        left: 0;
+        bottom: 0;
+        left: 110px;
         font-size: 30px;
         padding: 0 0 10px 0;
         border-radius: 10px;
-        box-shadow: #ffffff 1px 1px 2px,
-                    #000000 3px 3px 4px;
+        box-shadow: #ffffff 1px -1px 2px,
+                    #000000 3px -3px 4px;
     }
     .open-config{
         height: 45px;
@@ -364,36 +370,82 @@ header .wrapper{
             }
 
 .free{
-    height: 130px;
+    height: 200px;
     width: 100%;
-    background-color: #000000;
-    padding-top: 30px;
+    background-color: #001931d3;
+    padding: 25px 5% 0 5%;
     text-align: center;
+    font-size: small;
 }
 
-@media only screen and (max-width: 640px){
-    .head-contain{
-        width: 100%;
-        margin: 0;
+
+/* queries for wide screens */
+@media only screen and (min-width: 860px){
+
+    header{
+        width: 30%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        border-radius: 5px 0 0 5px;
     }
-        .head-contain .img{
-            width: 140px;
-            height: 140px;
-            margin: 0 calc((100% - 140px) / 2);
-            margin-top: 100px;
-        }
-        header .wrapper .name{
-            width: 100%;
-            text-align: center;
-        }
-            .name h1{
-                padding: 0;
-            }
-            .name p{
-                padding: 0;
-            }
+    
     .social{
-        width: 90%;
-        margin: 100px 5% 30px 5%;
+        width: 100%;
+        margin: 40px 0;
     }
+
+    .fun{
+        width: 70%;
+        padding: 10px;
+        overflow: scroll;
+    }
+
+    .free{
+        width: 70%;
+        height: auto;
+        background-color: #152921;
+        padding: 10px 10% 5px 10%;
+        text-align: center;
+        font-size: small;
+        z-index: 100;
+    }
+
+    #toastblock{
+        width: 70%;
+    }
+        #toastblock p{
+            border-radius: 0;
+        }
+    
+    .fabs p{
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        font-size: 25px;
+        padding: 0;
+        border-radius: 5px;
+    }
+        .open-config{
+            bottom: 0;
+            top: auto;
+            left: 70%;
+        }
+        .auto-loader{
+            bottom: 0;
+            top: auto;
+            left: calc(70% + 55px);
+        }
+        .to-top{
+            bottom: 0;
+            top: auto;
+            left: calc(70% + 110px);
+        }
+        .meme-loader{
+            bottom: 0;
+            top: auto;
+            right: 0;
+            left: auto;
+        }
 }

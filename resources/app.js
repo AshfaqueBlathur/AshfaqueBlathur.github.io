@@ -18,29 +18,42 @@ function clearMsg(id, t){
 };
 
 // golobal vars
-var favSub,
+var favSub = '',
     count = 1,
-    quality,
-    load = true;
+    quality = 1,
+    load = true,
+    fetchTarget;
+
+// update url
+function updateFetchTarget(){
+    if (favSub != ''){
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
+        console.log("Gonna fetch " + fetchTarget);
+    } else {
+        fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
+        console.log("Gonna fetch " + fetchTarget);
+    };
+    toast(`configuration updated. will fetch ${count} meme ${(favSub != '') ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 2000);
+};
+updateFetchTarget();
 
 // Fetch Meme
-var fetchTarget;
 function loadMeme(){
-    if (quality == undefined){
-        openConfig();
-    } else {
-        toast("started fetching memes..", "#000", "#fff", 1000);
-        fetch(fetchTarget)
-        .then(res => {
-            if (res.ok){
-                res.json().then(res => inputMeme(res))
-            };
-        })
-        .catch(err => {
-            console.log(err);
-            toast(`error getting memes..${err}`, "#ff2929", "#000", 2000);
-        });
-    };
+    toast("started fetching memes..", "#000", "#fff", 1000);
+    fetch(fetchTarget)
+    .then(res => {
+        if (res.ok){
+            res.json().then(res => inputMeme(res))
+        };
+    })
+    .catch(err => {
+        console.log(err);
+        toast(`error getting memes..${err}`, "#ff2929", "#000", 2000);
+    });
+};
+
+if ((window.screen.width * window.devicePixelRatio) > 860){
+    loadMeme();
 };
 
 // Input Memes
@@ -161,7 +174,7 @@ function autoLoad(){
 // auto loader
 var fire = true;
 window.onscroll = function(){
-    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 130;
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 150;
     let bodyHight = Math.ceil(document.body.offsetHeight);
     //console.log(windowHight, bodyHight);
     if (fire && (windowHight >= bodyHight) && load){
@@ -182,19 +195,7 @@ function showNsfw(el){
 };
 
 
-// update url
-function updateFetchTarget(){
-    if ((favSub != '') && (favSub != undefined)){
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
-    } else {
-        fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
-    };
-    toast(`configuration updated. will fetch ${count} meme ${(favSub != ('' || undefined)) ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 2000);
-};
-
-
+// fetch /r list
 const rListUl = document.getElementById("subreddit_list_block");
 const whereSelect = document.getElementById("sub_where");
 var where; 
