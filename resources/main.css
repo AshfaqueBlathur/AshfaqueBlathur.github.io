@@ -48,7 +48,7 @@ header .wrapper{
         height: 100%;
         box-shadow: #ffffff -1px 1px 2px,
                     #000000 -3px 3px 4px  ;
-        animation: aWriterOuter 10s infinite;
+        animation: aWriterOuter 6s infinite;
     }
     @keyframes aWriterOuter{
         0%, 100%{
@@ -112,33 +112,19 @@ header .wrapper{
     width: 24px;
     height: 24px;
 }
-#toastblock p{
-    position: fixed;
-    display: block;
-    width: 100%;
-    min-height: 30px;
-    padding: 0 10px;
-    color: black;
-    font-weight: 600;
-    font-size: smaller;
-    text-align: center;
-    animation: toast forwards ease-out;
-}
-        @keyframes toast{
-            0%, 100%{
-                top: 0;
-                display: none;
-            }
-            20%,80%{
-                top: 0;
-                display: block;
-            }
-            50%{
-                filter: saturate(10%);
-            }
-        }
 
-
+    #toastblock{
+        position: fixed;
+        top: 0;
+        display: block;
+        width: 100%;
+    }
+    #toastblock p{
+        padding: 10px 2% 5px 2%;
+        font-weight: 600;
+        font-size: small;
+        text-align: center;
+    }
 
 .fun{
     width: 100%;
@@ -217,51 +203,51 @@ header .wrapper{
     text-align: center;
     background-color: #27644e;
     z-index: 90;
-}
-.auto-loader{
-    height: 40px;
-    width: 40px;
-    top: 0;
-    left: 0;
-    font-size: 30px;
-    padding: 0 0 10px 0;
-    border-radius: 0 10px 10px 10px;
-    box-shadow: #ffffff 1px 1px 2px,
-                #000000 3px 3px 4px;
-}
-.to-top{
-    height: 40px;
-    width: 40px;
-    top: 0;
-    right: 0;
-    font-size: 30px;
-    padding: 0 0 10px 0;
-    border-radius: 10px 0 10px 10px;
-    box-shadow: #ffffff -1px 1px 2px,
-                #000000 -3px 3px 4px;
-}
-.open-config{
-    height: 50px;
-    width: 50px;
-    bottom: 0;
-    left: 0;
-    font-size: 35px;
-    padding: 0 0 10px 0;
-    border-radius: 10px 10px 10px 0;
-    box-shadow: #ffffff 1px -1px 2px,
-                #000000 3px -3px 4px;
-}
-.meme-loader{
-    height: 50px;
-    width: 50px;
-    bottom: 0;
-    right: 0;
-    font-size: 25px;
-    padding: 5px 0 0 0;
-    border-radius: 10px 10px 0 10px;
-    box-shadow: #ffffff -1px -1px 2px,
-                #000000 -3px -3px 4px;
-}
+    }
+    .auto-loader{
+        height: 45px;
+        width: 45px;
+        bottom: 60px;
+        left: 0;
+        font-size: 30px;
+        padding: 0 0 10px 0;
+        border-radius: 10px;
+        box-shadow: #ffffff 1px 1px 2px,
+                    #000000 3px 3px 4px;
+    }
+    .to-top{
+        height: 45px;
+        width: 45px;
+        bottom: 120px;
+        left: 0;
+        font-size: 30px;
+        padding: 0 0 10px 0;
+        border-radius: 10px;
+        box-shadow: #ffffff 1px 1px 2px,
+                    #000000 3px 3px 4px;
+    }
+    .open-config{
+        height: 45px;
+        width: 45px;
+        bottom: 0;
+        left: 0;
+        font-size: 35px;
+        padding: 0 0 10px 0;
+        border-radius: 10px 10px 10px 0;
+        box-shadow: #ffffff 1px -1px 2px,
+                    #000000 3px -3px 4px;
+    }
+        .meme-loader{
+            height: 50px;
+            width: 50px;
+            bottom: 0;
+            right: 0;
+            font-size: 25px;
+            padding: 5px 0 0 0;
+            border-radius: 10px 10px 0 10px;
+            box-shadow: #ffffff -1px -1px 2px,
+                        #000000 -3px -3px 4px;
+        }
 
 
 .meme-config{
@@ -282,7 +268,7 @@ header .wrapper{
         min-height: 90vh;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
     }
         .config h3{
@@ -302,8 +288,10 @@ header .wrapper{
             margin: 5px 0;
         }
         .count input, .select-sub input{
-            width: 100%;
-            min-height: 35px;
+            width: 90%;
+            margin: 0 5%;
+            min-height: 30px;
+            padding: 0 5px;
         }
         .quality div{
             display: block;
@@ -330,6 +318,50 @@ header .wrapper{
         font-size: medium;
         transition: 500ms;
     }
+    .sub-search{
+        width: 100%;
+        background-color: #00ffb315;
+    }
+        .search-where{
+            color: #ffffff;
+            text-shadow: -2px 0 #000000;
+        }
+        .search-trig{
+            cursor: pointer;
+            font-size: small;
+            background-color: #0044ff65;
+            width: 50%;
+            margin: 5px 25%;
+            border-radius: 5px;
+        }
+        #subreddit_list_block li{
+            list-style: none;
+            background-color: #00ffdd2d;
+            border-radius: 5px;
+            padding: 0 5px;
+        }
+            .rName{
+                font-size: medium;
+                text-transform: none;
+                color: #ffffff;
+                font-weight: 600;
+                text-decoration: underline;
+                text-shadow: -2px 0 3px #000;
+            }
+            .rDiscr{
+                font-size: x-small;
+                text-transform: none;
+                color: #ffd0d0;
+                font-weight: 400;
+            }
+            .rSelect{
+                font-size: small;
+                background-color: #9dff0065;
+                width: 50%;
+                margin: 5px 25%;
+                border-radius: 5px;
+                cursor: pointer;
+            }
 
 .free{
     height: 130px;

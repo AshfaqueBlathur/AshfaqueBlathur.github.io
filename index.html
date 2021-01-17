@@ -49,12 +49,26 @@
             <h3>configure the meme requests.</h3>
             <div class="select-sub">
                 <label for="subreddit">type your favourit subreddit</label>
-                <input type="text" name="subreddit" id="subreddit">
                 <p>please claer the field if cant get any memes anymore</p>
+                <input type="text" name="subreddit" id="subreddit">
+            </div>
+            <div class="sub-search">
+                <p class="search-where">
+                i would like to request 
+                   <select name="where" id="sub_where">
+                       <option value="popular">popular</option>
+                       <option value="new">new</option>
+                       <option value="default">default</option>
+                   </select>
+                subreddits list
+                </p>
+                <p class="search-trig" onclick="getSubreddits()">request list</p>
+                <ul id="subreddit_list_block">
+                </ul>
             </div>
             <div class="count">
                 <label for="count">drag to select the number of memes.<p id="now-selected"></p></label>
-                <input type="range" name="number_of_memes" id="count" min="1" max="10" oninput="showCount()">
+                <input type="range" name="number_of_memes" id="count" min="1" max="5" oninput="showCount()">
                 <p id="change_range" onclick="changeRange()">force celect upto 50 meme</p>
             </div>
             <div class="quality">

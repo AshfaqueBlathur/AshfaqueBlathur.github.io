@@ -1,14 +1,21 @@
 // Toast
-const toastBlock = document.getElementById("toastblock");
-function clearBlock(){
-    toastBlock.innerHTML = "";
-};
+var toastBlock = document.getElementById("toastblock");
 function toast(msg, bg, c, t){
-    let toastMsg = `<p style="background-color: ${bg}; color: ${c}; animation-duration: ${t}ms;">${msg}</p>`;
-    toastBlock.innerHTML = toastMsg;
-    setTimeout(clearBlock , t);
+    let id = (Math.floor((Math.random()*90000000)+10000000)).toString();
+    let msgP = document.createElement('p');
+    msgP.setAttribute("id", id);
+    msgP.setAttribute("style", `background-color: ${bg}; color: ${c};`);
+    msgP.innerText = msg;
+    toastBlock.appendChild(msgP);
+    clearMsg(id, t);
 };
-
+function clearMsg(id, t){
+    let msgP = document.getElementById(id);
+    setTimeout(function(){
+        toastBlock.removeChild(msgP);
+        //console.log(msgP);
+    }, t)
+};
 
 // golobal vars
 var favSub,
@@ -16,14 +23,13 @@ var favSub,
     quality,
     load = true;
 
-
 // Fetch Meme
 var fetchTarget;
 function loadMeme(){
     if (quality == undefined){
         openConfig();
     } else {
-        toast(`started fetching memes..`, "#000", "#fff", 1000);
+        toast("started fetching memes..", "#000", "#fff", 1000);
         fetch(fetchTarget)
         .then(res => {
             if (res.ok){
@@ -32,7 +38,7 @@ function loadMeme(){
         })
         .catch(err => {
             console.log(err);
-            toast(`error getting memes..<br>${err}`, "#ff2929", "#000", 2000);
+            toast(`error getting memes..${err}`, "#ff2929", "#000", 2000);
         });
     };
 };
@@ -101,14 +107,16 @@ function openConfig(){
 
 const rangeExpnter = document.getElementById('change_range');
 function changeRange(){
-    if (rangeExpnter.previousElementSibling.getAttribute('max') == '10'){
+    if (rangeExpnter.previousElementSibling.getAttribute('max') == '5'){
         rangeExpnter.previousElementSibling.setAttribute('max', '50');
-        rangeExpnter.innerText = 'revert back to select upto 10 meme';
+        rangeExpnter.innerText = 'revert back to select upto 5 meme';
     } else {
-        rangeExpnter.previousElementSibling.setAttribute('max', '10');
+        rangeExpnter.previousElementSibling.setAttribute('max', '5');
         rangeExpnter.innerText = 'force celect upto 50 meme';
     };
 };
+
+
 configForm.addEventListener('submit', function(e){
     e.preventDefault();
     configMenu.style.display = 'none';
@@ -125,6 +133,8 @@ configForm.addEventListener('submit', function(e){
     };
     updateFetchTarget();
 });
+
+
 // to top
 function toTop(){
     window.scrollTo({
@@ -133,6 +143,8 @@ function toTop(){
         behavior: "smooth"});
         toast("window scrolled to top", "#ffc400ad", "#000", 500);
 };
+
+
 // auto loading
 function autoLoad(){
     if (load){
@@ -168,6 +180,8 @@ function showNsfw(el){
     el.setAttribute("onclick", "");
     el.classList.remove("blur");
 };
+
+
 // update url
 function updateFetchTarget(){
     if ((favSub != '') && (favSub != undefined)){
@@ -177,5 +191,37 @@ function updateFetchTarget(){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
         console.log("Gonna fetch " + fetchTarget);
     };
-    toast(`configuration updated.<br>will fetch ${load == "auto" ? 2 : count} meme ${(favSub != ('' || undefined)) ? ('from ' + favSub ) : ''}<br>and will serve with ${quality}x quality`, "#00ff80", "#000", 2000);
+    toast(`configuration updated. will fetch ${count} meme ${(favSub != ('' || undefined)) ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 2000);
+};
+
+
+const rListUl = document.getElementById("subreddit_list_block");
+const whereSelect = document.getElementById("sub_where");
+var where; 
+function getSubreddits(){
+    where = whereSelect.value;
+    let subFetchUrl = `https://www.reddit.com/subreddits/${where}.json`;
+    fetch(subFetchUrl)
+    .then(res => {
+        rListUl.innerHTML = '';
+        res.json().then(res => {
+            let childrens = res.data.children;
+            childrens.forEach(child => serveSubreddits(child.data));
+        });
+    })
+    .catch(err => {
+        console.log(err);
+    });
+};
+
+function serveSubreddits(detail){
+    let name = detail.display_name,
+        discri = detail.public_description,
+        subR = document.createElement('li');
+    subR.innerHTML = `<p class="rName">${name}</p><p class="rDiscr">${discri}</p><p class="rSelect" onclick="selectSubR(this)" subR="${name}">select this subreddit</p>`;
+    rListUl.appendChild(subR);
+};
+function selectSubR(r){
+    let subR = r.getAttribute("subR");
+    configForm.subreddit.value = subR;
 };
