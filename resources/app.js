@@ -53,7 +53,8 @@ function loadMeme(){
 };
 
 if ((window.screen.width * window.devicePixelRatio) > 860){
-    loadMeme();
+    quality = 2;
+    //loadMeme();
 };
 
 // Input Memes
@@ -100,7 +101,7 @@ function inputMeme(resObj){
 function changeRes(el){
     let url = el.getAttribute('url');
     el.parentElement.previousElementSibling.setAttribute('src', url);
-    toast(`loading in the selected quality`, "#00ff80", "#fff", 1000);
+    toast(`loading in the selected quality`, "#00ff80", "#000", 1000);
 };
 
 
@@ -154,20 +155,29 @@ function toTop(){
         top: 0,
         left: 0,
         behavior: "smooth"});
-        toast("window scrolled to top", "#ffc400ad", "#000", 500);
+        toast("window scrolled to top", "#ffc400", "#fff", 500);
 };
 
+// selectSub
+function selectSub(){
+    alert("wait for the up date");
+};
+
+// clearMemes
+function clearMemes(){
+    alert("hu hooo! need an update");
+};
 
 // auto loading
 function autoLoad(){
     if (load){
         load = false;
         document.querySelector(".auto-loader").innerText = 'm';
-        toast("switched to manual meme loading mode", "#ffc400ad", "#000", 2000);
+        toast("switched to manual meme loading mode", "#ffc400", "#000", 2000);
     } else {
         load = true;
         document.querySelector(".auto-loader").innerText = 'a';
-        toast("gonna load meme on scroll", "#ffc400ad", "#000", 2000);
+        toast("gonna load meme on scroll", "#ffc400", "#000", 2000);
     };
 };
 
