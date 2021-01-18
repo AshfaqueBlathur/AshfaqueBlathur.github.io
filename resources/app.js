@@ -33,7 +33,7 @@ function updateFetchTarget(){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
         console.log("Gonna fetch " + fetchTarget);
     };
-    toast(`configuration updated. will fetch ${count} meme ${(favSub != '') ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 2000);
+    toast(`configuration updated. will fetch ${count} meme ${(favSub != '') ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 3000);
 };
 updateFetchTarget();
 
@@ -48,7 +48,7 @@ function loadMeme(){
     })
     .catch(err => {
         console.log(err);
-        toast(`error getting memes..${err}`, "#ff2929", "#000", 2000);
+        toast(`error getting memes..${err}`, "#ff2929", "#000", 4000);
     });
 };
 
@@ -130,7 +130,6 @@ function changeRange(){
     };
 };
 
-
 configForm.addEventListener('submit', function(e){
     e.preventDefault();
     configMenu.style.display = 'none';
@@ -148,35 +147,30 @@ configForm.addEventListener('submit', function(e){
     updateFetchTarget();
 });
 
-
 // to top
 function toTop(){
     window.scrollTo({
         top: 0,
         left: 0,
         behavior: "smooth"});
-        toast("window scrolled to top", "#ffc400", "#fff", 500);
-};
-
-// selectSub
-function selectSub(){
-    alert("wait for the up date");
+        toast("window scrolled to top", "#ffc400", "#fff", 1000);
 };
 
 // clearMemes
 function clearMemes(){
-    alert("hu hooo! need an update");
+    memeUl.innerHTML = '';
+    toast("all of them cleared", "#ffc400", "#fff", 1000);
 };
 
 // auto loading
 function autoLoad(){
     if (load){
         load = false;
-        document.querySelector(".auto-loader").innerText = 'm';
+        document.querySelector("#autoLoader").innerText = '🤗';
         toast("switched to manual meme loading mode", "#ffc400", "#000", 2000);
     } else {
         load = true;
-        document.querySelector(".auto-loader").innerText = 'a';
+        document.querySelector("#autoLoader").innerText = '🤖';
         toast("gonna load meme on scroll", "#ffc400", "#000", 2000);
     };
 };
@@ -195,44 +189,10 @@ window.onscroll = function(){
     };
 };
 
-
 // show nsfw
 function showNsfw(el){
     let url = el.getAttribute("url");
     el.setAttribute("src", url);
     el.setAttribute("onclick", "");
     el.classList.remove("blur");
-};
-
-
-// fetch /r list
-const rListUl = document.getElementById("subreddit_list_block");
-const whereSelect = document.getElementById("sub_where");
-var where; 
-function getSubreddits(){
-    where = whereSelect.value;
-    let subFetchUrl = `https://www.reddit.com/subreddits/${where}.json`;
-    fetch(subFetchUrl)
-    .then(res => {
-        rListUl.innerHTML = '';
-        res.json().then(res => {
-            let childrens = res.data.children;
-            childrens.forEach(child => serveSubreddits(child.data));
-        });
-    })
-    .catch(err => {
-        console.log(err);
-    });
-};
-
-function serveSubreddits(detail){
-    let name = detail.display_name,
-        discri = detail.public_description,
-        subR = document.createElement('li');
-    subR.innerHTML = `<p class="rName">${name}</p><p class="rDiscr">${discri}</p><p class="rSelect" onclick="selectSubR(this)" subR="${name}">select this subreddit</p>`;
-    rListUl.appendChild(subR);
-};
-function selectSubR(r){
-    let subR = r.getAttribute("subR");
-    configForm.subreddit.value = subR;
 };

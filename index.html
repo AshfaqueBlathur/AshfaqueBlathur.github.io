@@ -39,12 +39,11 @@
         </div>
     </div>
     <div class="fabs">
-        <p class="open-config" onclick="openConfig()">⚙</p>
-        <p class="auto-loader" onclick="autoLoad()">a</p>
-        <p class="to-top" onclick="toTop()">^</p>
-        <p class="clear-trig" onclick="clearMemes()">c</p>
-        <p class="sub-select-trig" onclick="selectSub()">/r</p>
-        <p class="meme-loader" onclick="loadMeme()">😆</p>
+        <p id="openConfig" onclick="openConfig()">⚙</p>
+        <p id="autoLoader" onclick="autoLoad()">🤖</p>
+        <p id="toTop" onclick="toTop()">🛰</p>
+        <p id="clearTrig" ondblclick="clearMemes()">🗑</p>
+        <p id="memeLoader" onclick="loadMeme()">😆</p>
     </div>
     <div class="meme-config" style="display: none;">
         <form class="config" id="config">
@@ -53,20 +52,6 @@
                 <label for="subreddit">type your favourit subreddit</label>
                 <p>please claer the field if cant get any memes anymore</p>
                 <input type="text" name="subreddit" id="subreddit">
-            </div>
-            <div class="sub-search">
-                <p class="search-where">
-                i would like to request 
-                   <select name="where" id="sub_where">
-                       <option value="popular">popular</option>
-                       <option value="new">new</option>
-                       <option value="default">default</option>
-                   </select>
-                subreddits list
-                </p>
-                <p class="search-trig" onclick="getSubreddits()">request list</p>
-                <ul id="subreddit_list_block">
-                </ul>
             </div>
             <div class="count">
                 <label for="count">drag to select the number of memes.<p id="now-selected"></p></label>

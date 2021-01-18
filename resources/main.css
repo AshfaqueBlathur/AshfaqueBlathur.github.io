@@ -3,9 +3,8 @@
 font-family: 'Poppins', sans-serif;
 */
 :root{
-    --bgc1: #2e416b;
-    --bgc2: #26312d;
-    --fabbg: #493650;
+    --bgc1: #15213f;
+    --bgc2: #17352a;
     --txtc: #ffffff;
 }
 *{
@@ -22,6 +21,7 @@ body{
 }
 header{
     width: 100%;
+    min-height: 125vh;
     background-color: var(--bgc2);
     color: var(--txtc);
     z-index: 100;
@@ -53,7 +53,7 @@ header .wrapper{
     }
     @keyframes spin{
         0%, 100%{
-            transform: rotateY(0deg) scale(1);
+            transform: scale(1);
         }
         40%, 60%{
             transform: rotateY(0deg) scale(.9);
@@ -118,19 +118,19 @@ header .wrapper{
     height: 24px;
 }
 
-    #toastblock{
-        position: fixed;
-        top: 0;
-        display: block;
-        width: 100%;
-    }
-    #toastblock p{
-        padding: 10px 2% 5px 2%;
-        font-weight: 600;
-        font-size: small;
-        text-align: center;
-        border-radius: 5px;
-    }
+            #toastblock{
+                position: fixed;
+                top: 0;
+                display: block;
+                width: 100%;
+                z-index: 200;
+            }
+            #toastblock p{
+                padding: 10px 2% 5px 2%;
+                font-weight: 600;
+                font-size: small;
+                text-align: center;
+            }
 
 .fun{
     width: 100%;
@@ -163,7 +163,7 @@ header .wrapper{
         .other-qualities p{
             width: 100%;
             margin: 5px 0;
-            height: 18px;
+            height: 15px;
             color: #fff;
             font-size: xx-small;
             background-color: #3732579d;
@@ -173,10 +173,12 @@ header .wrapper{
         }
 
     .meme-detail{
-        width: 85%;
+        width: 90%;
         min-height: 120px;
+        font-size: small;
     }
         .title{
+            font-size: x-large;
             display: inline-block;
             font-weight: 600;
             width: 100%;
@@ -197,7 +199,7 @@ header .wrapper{
         .sourece a:any-link{
             font-style: italic;
             font-weight: 400;
-            font-size: smaller;
+            font-size: small;
             background-color: #ffee003a;
             color: #ffffff;
         }
@@ -307,53 +309,8 @@ header .wrapper{
         font-size: medium;
         transition: 500ms;
     }
-    .sub-search{
-        width: 100%;
-        background-color: #00ffb315;
-    }
-        .search-where{
-            color: #ffffff;
-            text-shadow: -2px 0 #000000;
-        }
-        .search-trig{
-            cursor: pointer;
-            font-size: small;
-            background-color: #0044ff65;
-            width: 50%;
-            margin: 5px 25%;
-            border-radius: 5px;
-        }
-        #subreddit_list_block li{
-            list-style: none;
-            background-color: #00ffdd2d;
-            border-radius: 5px;
-            padding: 0 5px;
-        }
-            .rName{
-                font-size: medium;
-                text-transform: none;
-                color: #ffffff;
-                font-weight: 600;
-                text-decoration: underline;
-                text-shadow: -2px 0 3px #000;
-            }
-            .rDiscr{
-                font-size: x-small;
-                text-transform: none;
-                color: #ffd0d0;
-                font-weight: 400;
-            }
-            .rSelect{
-                font-size: small;
-                background-color: #9dff0065;
-                width: 50%;
-                margin: 5px 25%;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-
+    
 .free{
-    height: 125px;
     width: 100%;
     background-color: var(--bgc2);
     padding: 25px 5% 0 5%;
@@ -367,11 +324,11 @@ header .wrapper{
 @media only screen and (min-width: 860px){
 
     header{
-        width: 30%;
+        width: 40%;
         position: fixed;
         top: 0;
         right: 0;
-        height: 100vh;
+        min-height: 100vh;
         border-radius: 5px 0 0 5px;
     }
     
@@ -381,27 +338,49 @@ header .wrapper{
     }
        
     .fun{
-        width: 70%;
-        min-height: calc(100vh - 75px);
-        padding: 10px;
-        overflow-y: scroll;
+        width: 60%;
+        min-height: 125vh;
+        border-right: 2px solid rgba(231, 207, 142, 0.432);
     }
+        .fun-contin{
+            width: 90%;
+            margin: 0 5%;
+            padding: 0 10px;
+        }
+        @media only screen and (min-width: 1020px){
+            .fun-contin{
+                width: 80%;
+                margin: 0 10%;
+            }
+        }
 
     .free{
-        width: 70%;
-        height: 75px;
+        width: 60%;
         padding: 10px 10% 5px 10%;
     }
 
     #toastblock{
-        width: 70%;
+        width: 40%;
+        top: 0;
+        left: auto;
+        right: 0;
     }
         #toastblock p{
-            border-radius: 0;
+            animation: toast 500ms ease forwards;
         }
-    
+        @keyframes toast{
+            0%{
+                transform: translateX(100vw);
+            }
+            20%, 80%{
+                transform: translateX(0);
+            }
+            100%{
+                transform: translateY(-100vh);
+            }
+        }
     .fabs{
-        width: 30%;
+        width: 40%;
     }
         .fabs p{
             width: calc(100% / 8);
