@@ -13,7 +13,6 @@ function clearMsg(id, t){
     let msgP = document.getElementById(id);
     setTimeout(function(){
         toastBlock.removeChild(msgP);
-        //console.log(msgP);
     }, t)
 };
 
@@ -28,12 +27,11 @@ var favSub = '',
 function updateFetchTarget(){
     if (favSub != ''){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${favSub}/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
-        console.log("Gonna fetch " + fetchTarget);
     };
-    toast(`configuration updated. will fetch ${count} meme ${(favSub != '') ? ('from ' + favSub ) : ''} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 3000);
+    console.log("Gonna fetch " + fetchTarget);
+    toast(`configuration updated. will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 3000);
 };
 updateFetchTarget();
 
@@ -54,7 +52,7 @@ function loadMeme(){
 
 if ((window.screen.width * window.devicePixelRatio) > 860){
     quality = 2;
-    //loadMeme();
+    loadMeme();
 };
 
 // Input Memes
@@ -112,7 +110,7 @@ const countShower = document.getElementById("now-selected");
 
 showCount();
 function showCount(){
-    countShower.innerText = `selected to lad ${configForm.number_of_memes.value} memes per request`;
+    countShower.innerText = `selected to load ${configForm.number_of_memes.value} memes per request`;
 };
 
 function openConfig(){
@@ -163,14 +161,14 @@ function clearMemes(){
 };
 
 // auto loading
-function autoLoad(){
+function autoLoad(el){
     if (load){
         load = false;
-        document.querySelector("#autoLoader").innerText = '🤗';
+        el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/manual.png');
         toast("switched to manual meme loading mode", "#ffc400", "#000", 2000);
     } else {
         load = true;
-        document.querySelector("#autoLoader").innerText = '🤖';
+        el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/auto.png');
         toast("gonna load meme on scroll", "#ffc400", "#000", 2000);
     };
 };
@@ -178,13 +176,12 @@ function autoLoad(){
 // auto loader
 var fire = true;
 window.onscroll = function(){
-    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset) + 150;
+    let windowHight = Math.ceil(window.innerHeight + window.pageYOffset);
     let bodyHight = Math.ceil(document.body.offsetHeight);
-    //console.log(windowHight, bodyHight);
-    if (fire && (windowHight >= bodyHight) && load){
+    if (fire && load && ((windowHight + 100) >= bodyHight)){
         fire = false;
         loadMeme();
-    } else if (!fire && (windowHight < bodyHight)){
+    } else if (!fire && ((windowHight + 100) < bodyHight)){
         fire = true;
     };
 };
