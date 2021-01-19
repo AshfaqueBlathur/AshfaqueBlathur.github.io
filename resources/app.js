@@ -21,6 +21,7 @@ var favSub = '',
     count = 1,
     quality = 1,
     load = true,
+    adult = true,
     fetchTarget;
 
 // update url
@@ -32,7 +33,8 @@ function updateFetchTarget(){
     };
     console.log("Gonna fetch " + fetchTarget);
     toast("configuration updated!", "#fffb00", "#000", 1000);
-    toast(`will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00", "#fff", 2000);
+    toast(`will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00", "#000", 2000);
+    toast(`you have ${adult ? 'given consent to show you explicit contents!' : 'choosen for ignoring explicit contents!'}`, "#4e768d", "#fff", 1000);
 };
 updateFetchTarget();
 
@@ -45,9 +47,9 @@ function loadMeme(){
         if ((requestMeme.status == 200) && (requestMeme.readyState == 4)){
             let resJson = JSON.parse(requestMeme.response);
             inputMeme(resJson);
-        } else if ((requestMeme.status == 404) && (requestMeme.readyState == 4)){
+        } else if ((requestMeme.status >= 400) && (requestMeme.readyState == 4)){
             let resJson = JSON.parse(requestMeme.response);
-            toast(resJson.message + "error code: " + resJson.code, "#f51e1e", "#000", 3000);
+            toast(resJson.message + " | error code: " + resJson.code, "#f51e1e", "#fff", 3000);
         };
     };
     requestMeme.open("GET", fetchTarget);
@@ -79,7 +81,7 @@ function inputMeme(resObj){
             preview = meme.preview,
             li = document.createElement('li');
         li.innerHTML = `<div class="meme-img">
-                            <img ${(nsfw || spoiler) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality]}"` : `src="${preview[quality]}"`} alt="meme from reddit by ${author}">
+                            <img ${((nsfw || spoiler) && !adult) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality]}"` : `src="${preview[quality]}"`} alt="meme from reddit by ${author}">
                             <div class="other-qualities">
                                 <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
                                 <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
@@ -148,6 +150,11 @@ configForm.addEventListener('submit', function(e){
     } else if (configForm[5].checked){
         quality = 3;
     };
+    if (configForm.adult.checked){
+        adult = true;
+    } else {
+        adult = false;
+    };
     updateFetchTarget();
 });
 
@@ -157,13 +164,13 @@ function toTop(){
         top: 0,
         left: 0,
         behavior: "smooth"});
-        toast("window scrolled to top", "#ffc400", "#fff", 1000);
+        toast("window scrolled to top", "#ffc400", "#000", 1000);
 };
 
 // clearMemes
 function clearMemes(){
     memeUl.innerHTML = '';
-    toast("all of them cleared", "#ffc400", "#fff", 1000);
+    toast("all of them cleared", "#ffc400", "#000", 1000);
 };
 
 // auto loading

@@ -61,11 +61,11 @@
             <div class="quality">
                 <p>select the meme quality</p>
                 <div>
-                    <input type="radio" name="quality" id="quality_1">
+                    <input type="radio" name="quality" id="quality_1" required>
                     <label for="quality_1">0x (lowest)</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="quality_2" checked>
+                    <input type="radio" name="quality" id="quality_2">
                     <label for="quality_2">1x (low)</label>
                 </div>
                 <div>
@@ -76,6 +76,10 @@
                     <input type="radio" name="quality" id="quality_4">
                     <label for="quality_4">3x (high)</label>
                 </div>
+            </div>
+            <div class="adult">
+                <label for="adult">i don't care any nsfw tags </label>
+                <input type="checkbox" name="adult" id="adult" checked>
             </div>
             <button type="submit">save & exit</button>
         </form>

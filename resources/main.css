@@ -3,7 +3,7 @@
 font-family: 'Poppins', sans-serif;
 */
 :root{
-    --bgc1: #15213f;
+    --bgc1: #051b12;
     --bgc2: #17352a;
     --txtc: #ffffff;
 }
@@ -160,14 +160,14 @@ header .wrapper{
                 
     .other-qualities{
         width: 10%;
-        height: 120px;
+        height: 100px;
         float: right;
         display: block;
         text-align: right;
     }
         .other-qualities p{
             width: 100%;
-            margin: 5px 0;
+            margin-bottom: 5px;
             height: 15px;
             color: #fff;
             font-size: xx-small;
@@ -179,7 +179,7 @@ header .wrapper{
 
     .meme-detail{
         width: 90%;
-        min-height: 120px;
+        min-height: 100px;
         font-size: small;
     }
         .title{
@@ -187,13 +187,13 @@ header .wrapper{
             display: inline-block;
             font-weight: 600;
             width: 100%;
-            color: #ff9595;
+            color: #fa7878;
         }
         .author{
-            color: #33e089;
+            color: #00ff80;
         }
         .subreddit{
-            color: #e0d433;
+            color: #c0b300;
         }
         .ups{
             color: #82d300;
@@ -205,8 +205,8 @@ header .wrapper{
             font-style: italic;
             font-weight: 400;
             font-size: small;
-            background-color: #ffee003a;
-            color: #ffffff;
+            background-color: #ffee001c;
+            color: #b6b6b6;
         }
 
 .fabs{
@@ -268,7 +268,7 @@ header .wrapper{
     .config{
         width: 90%;
         margin: 0 5%;
-        min-height: 90vh;
+        min-height: 100vh;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
@@ -305,6 +305,11 @@ header .wrapper{
             color: #7de71ad2;
             text-decoration: underline;
         }
+        .adult{
+            font-size: smaller;
+            color: #fff;
+            text-shadow: -2px 1px rgb(0, 0, 0);
+        }
     .meme-config button{
         cursor: pointer;
         display: block;
@@ -324,9 +329,8 @@ header .wrapper{
     
 .free{
     width: 100%;
-    min-height: 150px;
     background-color: var(--bgc2);
-    padding: 25px 5% 0 5%;
+    padding: 10px 5% 60px 5%;
     text-align: center;
     font-size: small;
     z-index: 100;
@@ -341,8 +345,8 @@ header .wrapper{
         position: fixed;
         top: 0;
         right: 0;
-        min-height: 100vh;
         border-radius: 5px 0 0 5px;
+        border-left: 2px solid rgba(231, 207, 142, 0.432);
     }
     
     .social{
@@ -352,20 +356,22 @@ header .wrapper{
        
     .fun{
         width: 60%;
-        min-height: 125vh;
-        border-right: 2px solid rgba(231, 207, 142, 0.432);
+        min-height: 100vh;
     }
         .fun-contin{
-            width: 90%;
-            margin: 0 5%;
+            width: 94%;
+            margin: 0 3%;
             padding: 0 10px;
         }
         @media only screen and (min-width: 1020px){
             .fun-contin{
-                width: 80%;
-                margin: 0 10%;
+                width: 90%;
+                margin: 0 5%;
             }
         }
+            .title{
+                font-size: x-large;
+            }
 
     .free{
         width: 60%;
@@ -397,4 +403,9 @@ header .wrapper{
             max-width: 40px;
             margin: 0 1%;
         }
+
+    .config{
+        width: 60%;
+        margin: 0 20%;
+    }
 }
