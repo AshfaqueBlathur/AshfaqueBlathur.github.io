@@ -167,12 +167,6 @@ function toTop(){
         toast("window scrolled to top", "#ffc400", "#000", 1000);
 };
 
-// clearMemes
-function clearMemes(){
-    memeUl.innerHTML = '';
-    toast("all of them cleared", "#ffc400", "#000", 1000);
-};
-
 // auto loading
 function autoLoad(el){
     if (load){
@@ -205,3 +199,20 @@ function showNsfw(el){
     el.setAttribute("onclick", "");
     el.classList.remove("blur");
 };
+
+// clearMemes
+function clearMemes(){
+    if (event.detail === 1){
+        toast('tap twice to clear all memes', '#fff', '#000', 500);
+    } else {
+        memeUl.innerHTML = '';
+        toast("all of them cleared", "#ffc400", "#000", 1000);
+    };
+};
+
+/* 
+if (localStorage.seenUiDemo != 'y'){
+    importScripts(resources/uiDemo.js);
+    localStorage.seenUiDemo = 'y';
+};
+*/
