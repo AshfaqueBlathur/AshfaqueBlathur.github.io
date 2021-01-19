@@ -31,25 +31,30 @@ function updateFetchTarget(){
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
     };
     console.log("Gonna fetch " + fetchTarget);
-    toast(`configuration updated. will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00b0", "#000", 3000);
+    toast("configuration updated!", "#fffb00", "#000", 1000);
+    toast(`will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00", "#fff", 2000);
 };
 updateFetchTarget();
 
+
 // Fetch Meme
 function loadMeme(){
-    toast("started fetching memes..", "#000", "#fff", 1000);
-    fetch(fetchTarget)
-    .then(res => {
-        if (res.ok){
-            res.json().then(res => inputMeme(res))
+    toast("started fetching memes..", "#0e0f0a", "#fff", 1000);
+    let requestMeme = new XMLHttpRequest;
+    requestMeme.onreadystatechange = () => {
+        if ((requestMeme.status == 200) && (requestMeme.readyState == 4)){
+            let resJson = JSON.parse(requestMeme.response);
+            inputMeme(resJson);
+        } else if ((requestMeme.status == 404) && (requestMeme.readyState == 4)){
+            let resJson = JSON.parse(requestMeme.response);
+            toast(resJson.message + "error code: " + resJson.code, "#f51e1e", "#000", 3000);
         };
-    })
-    .catch(err => {
-        console.log(err);
-        toast(`error getting memes..${err}`, "#ff2929", "#000", 4000);
-    });
+    };
+    requestMeme.open("GET", fetchTarget);
+    requestMeme.send();
 };
 
+// responsive resolution
 if ((window.screen.width * window.devicePixelRatio) > 860){
     quality = 2;
     loadMeme();
@@ -57,6 +62,7 @@ if ((window.screen.width * window.devicePixelRatio) > 860){
 
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
+
 function inputMeme(resObj){
     let count = resObj.count,
         memes = resObj.memes;
@@ -165,12 +171,11 @@ function autoLoad(el){
     if (load){
         load = false;
         el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/manual.png');
-        toast("switched to manual meme loading mode", "#ffc400", "#000", 2000);
     } else {
         load = true;
         el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/auto.png');
-        toast("gonna load meme on scroll", "#ffc400", "#000", 2000);
     };
+    toast(`switched to ${load ? "auto" : "manual"} meme loading mode`, "#ffc400", "#000", 1000);
 };
 
 // auto loader
