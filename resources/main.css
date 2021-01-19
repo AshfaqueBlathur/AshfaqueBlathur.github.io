@@ -49,26 +49,19 @@ header .wrapper{
         border-radius: 50%;
         box-shadow: #ffffff -1px 1px 2px,
                     #000000 -3px 3px 4px  ;
-        animation: pulse 6s 1s infinite ease;
+        animation: pulse 3s 1s infinite ease;
     }
     header .wrapper .name{
         color: var(--txtc-1);
         width: calc(100% - 140px);
         width: 100%;
         text-align: center;
-        animation: pulse 6s 1s infinite ease alternate-reverse;
     }
     @keyframes pulse{
-        0%, 100%{
+        0%, 20%, 80%, 100%{
             transform: scale(1);
         }
-        20%, 80%{
-            transform: scale(.9);
-        }
-        30%, 70%{
-            transform: scale(1);
-        }
-        50%{
+        10%, 90%{
             transform: scale(.9);
         }
     }
@@ -130,10 +123,13 @@ header .wrapper{
                 z-index: 200;
             }
             #toastblock p{
-                padding: 10px 2% 5px 2%;
-                margin-bottom: 5px;
+                padding: 10px 2% 2px 2%;
+                border-bottom: 2px solid;
+                font-style: oblique;
+                letter-spacing: 2px;
+                background-color: #00000055;
                 font-weight: 600;
-                font-size: small;
+                font-size: x-small;
                 text-align: center;
             }
 

@@ -4,7 +4,7 @@ function toast(msg, bg, c, t){
     let id = (Math.floor((Math.random()*90000000)+10000000)).toString();
     let msgP = document.createElement('p');
     msgP.setAttribute("id", id);
-    msgP.setAttribute("style", `background-color: ${bg}; color: ${c};`);
+    msgP.setAttribute("style", `border-bottom-color: ${bg}; color: ${c};`);
     msgP.innerText = msg;
     toastBlock.appendChild(msgP);
     clearMsg(id, t);
@@ -17,7 +17,8 @@ function clearMsg(id, t){
 };
 
 // golobal vars
-var favSub = '',
+var loaded = [],
+    favSub = '',
     count = 1,
     quality = 1,
     load = true,
@@ -31,10 +32,9 @@ function updateFetchTarget(){
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
     };
-    console.log("Gonna fetch " + fetchTarget);
-    toast("configuration updated!", "#fffb00", "#000", 1000);
-    toast(`will fetch ${fetchTarget} and will serve with ${quality}x quality`, "#fffb00", "#000", 2000);
-    toast(`you have ${adult ? 'given consent to show you explicit contents!' : 'choosen for ignoring explicit contents!'}`, "#4e768d", "#fff", 1000);
+    toast("configuration updated!", "#fffb00", "#fff", 1000);
+    toast(`will fetch | ${fetchTarget} | & will show with ${quality}x quality!`, "#fffb00", "#fff", 1500);
+    toast(`will ${adult ? 'not' : ''}  show you explicit contents!`, "#4e768d", "#fff", 1000);
 };
 updateFetchTarget();
 
@@ -44,12 +44,13 @@ function loadMeme(){
     toast("started fetching memes..", "#0e0f0a", "#fff", 1000);
     let requestMeme = new XMLHttpRequest;
     requestMeme.onreadystatechange = () => {
-        if ((requestMeme.status == 200) && (requestMeme.readyState == 4)){
+        if (requestMeme.readyState == 4){
             let resJson = JSON.parse(requestMeme.response);
-            inputMeme(resJson);
-        } else if ((requestMeme.status >= 400) && (requestMeme.readyState == 4)){
-            let resJson = JSON.parse(requestMeme.response);
-            toast(resJson.message + " | error code: " + resJson.code, "#f51e1e", "#fff", 3000);
+            if (requestMeme.status == 200){
+                inputMeme(resJson);
+            } else {
+                toast("Error: " + resJson.code +  " | " + resJson.message, "#f51e1e", "#fff", 3000);
+            };
         };
     };
     requestMeme.open("GET", fetchTarget);
@@ -64,11 +65,10 @@ if ((window.screen.width * window.devicePixelRatio) > 860){
 
 // Input Memes
 const memeUl = document.getElementById('memes-ul');
-
 function inputMeme(resObj){
     let count = resObj.count,
         memes = resObj.memes;
-    toast(`Got ${count} memes..`, "#00ff80", "#000", 2000);
+    toast(`Got ${count} memes..`, "#00ff80", "#fff", 1000);
     memes.forEach(meme => {
         let postLink = meme.postLink,
             subreddit = meme.subreddit,
@@ -78,28 +78,33 @@ function inputMeme(resObj){
             spoiler = meme.spoiler,
             author = meme.author,
             ups = meme.ups,
-            preview = meme.preview,
-            li = document.createElement('li');
-        li.innerHTML = `<div class="meme-img">
-                            <img ${((nsfw || spoiler) && !adult) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality]}"` : `src="${preview[quality]}"`} alt="meme from reddit by ${author}">
-                            <div class="other-qualities">
-                                <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
-                                <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
-                                <p url="${preview[2]}" onclick="changeRes(this);">2x</p>
-                                <p url="${preview[3]}" onclick="changeRes(this);">3x</p>
-                                <p url="${url}" onclick="changeRes(this);">HD</p>
+            preview = meme.preview;
+        if (!loaded.includes(url)){
+            loaded.push(url);
+            let li = document.createElement('li');
+            li.innerHTML = `<div class="meme-img">
+                                <img ${((nsfw || spoiler) && !adult) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality]}"` : `src="${preview[quality]}"`} alt="meme from reddit by ${author}">
+                                <div class="other-qualities">
+                                    <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
+                                    <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
+                                    <p url="${preview[2]}" onclick="changeRes(this);">2x</p>
+                                    <p url="${preview[3]}" onclick="changeRes(this);">3x</p>
+                                    <p url="${url}" onclick="changeRes(this);">HD</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="meme-detail">
-                            <p class="detail">
-                                <span class="title">${title}</span>
-                                by <span class="author">${author}</span>
-                                from <span class="subreddit">${subreddit}</span>
-                                subreddit with <span class="ups">${ups}</span> votes
-                            </p>
-                            <p class="sourece">Source: <a href="${postLink}">${postLink}</a></p>
-                        </div>`
-        memeUl.appendChild(li);
+                            <div class="meme-detail">
+                                <p class="detail">
+                                    <span class="title">${title}</span>
+                                    by <span class="author">${author}</span>
+                                    from <span class="subreddit">${subreddit}</span>
+                                    subreddit with <span class="ups">${ups}</span> votes
+                                </p>
+                                <p class="sourece">Source: <a href="${postLink}">${postLink}</a></p>
+                            </div>`
+            memeUl.appendChild(li);
+        } else {
+            toast(`Meme skipped being already on screen!`, "#ffc400", "#fff", 1000);
+        };
     });
 };
 
@@ -107,7 +112,7 @@ function inputMeme(resObj){
 function changeRes(el){
     let url = el.getAttribute('url');
     el.parentElement.previousElementSibling.setAttribute('src', url);
-    toast(`loading in the selected quality`, "#00ff80", "#000", 1000);
+    toast(`loading in the selected quality`, "#00ff80", "#fff", 1500);
 };
 
 
@@ -164,7 +169,7 @@ function toTop(){
         top: 0,
         left: 0,
         behavior: "smooth"});
-        toast("window scrolled to top", "#ffc400", "#000", 1000);
+        toast("window scrolled to top", "#ffc400", "#fff", 1000);
 };
 
 // auto loading
@@ -176,7 +181,7 @@ function autoLoad(el){
         load = true;
         el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/auto.png');
     };
-    toast(`switched to ${load ? "auto" : "manual"} meme loading mode`, "#ffc400", "#000", 1000);
+    toast(`switched to ${load ? "auto" : "manual"} meme loading mode`, "#ffc400", "#fff", 1500);
 };
 
 // auto loader
@@ -203,16 +208,10 @@ function showNsfw(el){
 // clearMemes
 function clearMemes(){
     if (event.detail === 1){
-        toast('tap twice to clear all memes', '#fff', '#000', 500);
+        toast('tap twice to clear all memes', '#fff', '#fff', 1500);
     } else {
         memeUl.innerHTML = '';
-        toast("all of them cleared", "#ffc400", "#000", 1000);
+        loaded = [];
+        toast("all of them cleared", "#ffc400", "#fff", 1500);
     };
 };
-
-/* 
-if (localStorage.seenUiDemo != 'y'){
-    importScripts(resources/uiDemo.js);
-    localStorage.seenUiDemo = 'y';
-};
-*/
