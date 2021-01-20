@@ -108,7 +108,7 @@ header .wrapper{
     border-radius: 50% 0 50% 50%;
     padding: 8px;
     box-shadow: #ffffff 1px 1px 2px,
-                #000000 3px 3px 4px  ;
+                rgb(0, 0, 0) 3px 3px 4px  ;
 }
 .social-icon img{
     width: 24px;
@@ -124,11 +124,13 @@ header .wrapper{
             }
             #toastblock p{
                 padding: 10px 2% 2px 2%;
-                border-bottom: 2px solid;
-                font-style: oblique;
-                letter-spacing: 2px;
-                background-color: #00000055;
-                font-weight: 600;
+                border-bottom: 1px solid;
+                margin-bottom: 2px;
+                letter-spacing: 3px;
+                background-color: #00000090;
+                text-shadow: #000000 5px 5px 10px;
+                font-style: monospace;
+                font-weight: 400;
                 font-size: x-small;
                 text-align: center;
             }
