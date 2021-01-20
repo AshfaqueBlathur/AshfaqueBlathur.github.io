@@ -78,7 +78,7 @@ function loadMeme(){
 // responsive resolution
 if ((window.screen.width * window.devicePixelRatio) > 860){
     quality = 2;
-    //loadMeme();
+    loadMeme();
 };
 
 // Input Memes
