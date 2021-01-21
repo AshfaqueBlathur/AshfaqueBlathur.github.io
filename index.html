@@ -55,7 +55,7 @@
             </div>
             <div class="count">
                 <label for="count">drag to select the number of memes.<p id="now-selected"></p></label>
-                <input type="range" name="number_of_memes" id="count" min="1" max="5" oninput="showCount()">
+                <input type="range" name="number_of_memes" id="count" min="1" max="5"  value="1" oninput="showCount()">
                 <p id="change_range" onclick="changeRange()">force celect upto 50 meme</p>
             </div>
             <div class="quality">
@@ -65,11 +65,11 @@
                     <label for="quality_1">0x (lowest)</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="quality_2" checked>
+                    <input type="radio" name="quality" id="quality_2">
                     <label for="quality_2">1x (low)</label>
                 </div>
                 <div>
-                    <input type="radio" name="quality" id="quality_3">
+                    <input type="radio" name="quality" id="quality_3" checked>
                     <label for="quality_3">2x (medium)</label>
                 </div>
                 <div>

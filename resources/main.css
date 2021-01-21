@@ -123,15 +123,15 @@ header .wrapper{
                 z-index: 200;
             }
             #toastblock p{
-                padding: 10px 2% 2px 2%;
+                padding: 5px 2% 5px 2%;
                 border-bottom: 1px solid;
                 margin-bottom: 2px;
                 letter-spacing: 3px;
-                background-color: #00000090;
-                text-shadow: #000000 5px 5px 10px;
+                background-color: #00000095;
+                text-shadow: #000000 2px 2px 15px;
                 font-style: monospace;
                 font-weight: 400;
-                font-size: x-small;
+                font-size: small;
                 text-align: center;
             }
 

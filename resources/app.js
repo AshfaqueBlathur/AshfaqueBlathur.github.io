@@ -38,7 +38,7 @@ function clearMsg(id, time){
 var loaded = [],
     favSub = '',
     count = 1,
-    quality = 1,
+    quality = 2,
     load = true,
     adult = true,
     fetchTarget;
@@ -50,9 +50,9 @@ function updateFetchTarget(){
     } else {
         fetchTarget = `https://meme-api.herokuapp.com/gimme/${count}`;
     };
-    toast("configuration updated!", "success");
+    toast("configuration updated!", "info");
     toast(`will fetch | ${fetchTarget} | & will show with ${quality}x quality!`, "info");
-    toast(`will ${adult ? 'not' : ''}  show you explicit contents!`, "warning");
+    toast(`will ${adult ? 'not' : ''}  show you explicit contents!`, "info");
 };
 updateFetchTarget();
 
@@ -77,7 +77,7 @@ function loadMeme(){
 
 // responsive resolution
 if ((window.screen.width * window.devicePixelRatio) > 860){
-    quality = 2;
+    quality = 3;
     loadMeme();
 };
 
@@ -101,7 +101,7 @@ function inputMeme(resObj){
             loaded.push(url);
             let li = document.createElement('li');
             li.innerHTML = `<div class="meme-img">
-                                <img ${((nsfw || spoiler) && !adult) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality] ? preview[quality] : url}"` : `src="${preview[quality] ? preview[quality] : url}"`} alt="meme from reddit by ${author}">
+                                <img ${((nsfw || spoiler) && !adult) ? `class="blur" src="resources/img/warning.png" onclick="showNsfw(this)" url="${preview[quality] ? preview[quality] : url}"` : `src="${preview[quality] ? preview[quality] : url}"`} loading="lazy" alt="meme from reddit by ${author}">
                                 <div class="other-qualities">
                                     <p url="${preview[0]}" onclick="changeRes(this);">0x</p>
                                     <p url="${preview[1]}" onclick="changeRes(this);">1x</p>
