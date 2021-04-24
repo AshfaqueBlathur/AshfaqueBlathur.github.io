@@ -3,9 +3,9 @@
 font-family: 'Poppins', sans-serif;
 */
 :root{
-    --bgc1: #051b12;
-    --bgc2: #489b7c;
-    --txtc: #ffffff;
+    --bgc1: #030620;
+    --bgc2: #04153a;
+    --txtc: #fffcec;
 }
 *{
     margin: 0;
@@ -21,8 +21,6 @@ body{
 }
 header{
     width: 100%;
-    background-color: var(--bgc2);
-    color: var(--txtc);
     z-index: 100;
 }
 .wrapper{
@@ -36,30 +34,38 @@ header{
     text-align: center;
     margin-top: 30px;
 }
+    .logo img{
+        width: 180px;
+    }
 .intro{
     text-align: center;
     width: 90%;
-    padding: 10px 5%;
-    margin: 10px 5%;
-    background-color: #16161641;
+    margin: 0 5%;
 }
-    .intro h3{
-        text-decoration: underline;
+    .intro h2{
         font-weight: 900;
         letter-spacing: 2px;
         margin-bottom: 10px;
     }
+    .intro h2:after{
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-color: #cccccc;
+        margin-bottom: 10px;
+    }
     .intro p{
-        letter-spacing: 1.5px;
+        padding: 0 5px;
+        letter-spacing: 1px;
         font-weight: 500;
         text-align: justify;
     }
 .contact{
     width: 90%;
-    padding: 10px 5%;
-    margin: 0 5%;
-    height: 200px;
-    background-color: #16161685;
+    padding: 0;
+    margin: 5px 5%;
+    border: dotted #00ff80 .5px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -68,25 +74,38 @@ header{
     justify-content: space-evenly;
 }
     .contact h3{
-        letter-spacing: 2px;
-        text-decoration: underline;
+        margin-top: 5px;
+    }
+    .contact h3:after{
+        content: '';
+        display: block;
+        width: 70%;
+        height: 2px;
+        background-color: #cccccc;
+        margin: 0 15%;
+        margin-bottom: 10px;
     }
     .contact input{
         width: 90%;
-        height: 50px;
-        padding: 10px 20px;
+        height: 30px;
+        padding: 5px;
         border: 0;
+        margin-bottom: 10px;
     }
     .contact button{
         border: 0;
         height: 30px;
-        background-color: #008020;
+        background-color: #004211;
         text-transform: uppercase;
         letter-spacing: 2px;
-        font-weight: 700;
+        font-weight: 400;
         color: #ffffff;
-        text-shadow: -1px 1px #000;
+        text-shadow: -1px 0 #00f7ff,
+                     -2px 0 #000000;
+        cursor: pointer;
+        margin-bottom: 10px;
     }
+
 .social{
     width: 90%;
     margin: 20px 5% 150px 5%;
@@ -96,43 +115,35 @@ header{
     align-items: center;
 }
 
-.connect{
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    letter-spacing: 8px;
-    font-weight: 900;
-    color: #000000;
-    text-transform: uppercase;
-}
-.connect::after{
-    content: '';
-    display: block;
-    width: 70%;
-    height: 3px;
-    background-color: #000000;
-    margin: 0 15% 20px 15%;
-}
+    .connect{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: 700;
+        color: #ebebeb;
+    }
+    .connect::after{
+        content: '';
+        display: block;
+        width: 70%;
+        height: 2px;
+        background-color: #cccccc;
+        margin: 0 15%;
+        margin-bottom: 10px;
+    }
+
 .social-icon{
-    width: 35px;
-    height: 35px;
-    background-color: #000000;
-    border-radius: 50% 0 50% 50%;
-    padding: 8px;
-    margin: 0 10px;
-    box-shadow: #ffffff 1px 1px 2px,
-                rgb(0, 0, 0) 3px 3px 4px;
-    filter: grayscale(1);
-    transition: 150ms;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px;
+    margin: 0 5px;
+    color: #ffffff;
 }
 .social-icon:hover{
-    filter: grayscale(0);
-    transform: scale(1.25);
-    border-radius: 50%;
-}
-.social-icon img{
-    width: 20px;
-    height: 20px;
+    transform: scale(1.2);
 }
 
             /* toast block styles */
@@ -145,10 +156,10 @@ header{
             }
             #toastblock p{
                 padding: 5px 2% 5px 2%;
-                border-bottom: 1px solid;
+                border-bottom: 0.5px solid;
                 margin-bottom: 2px;
                 letter-spacing: 3px;
-                background-color: #00000095;
+                background-color: #000000;
                 text-shadow: #000000 2px 2px 15px;
                 font-style: monospace;
                 font-weight: 400;
@@ -163,9 +174,13 @@ header{
         width: 100%;
     }
     #memes-ul li{
-        width: 98%;
+        width: 100%;
         list-style: none;
-        margin: 5px 1%;
+        padding: 5px;
+        background-color: #0f061a;
+    }
+    #memes-ul li:last-child{
+        margin-bottom: 40px;
     }
         .meme-img{
             width: 100%;
@@ -243,34 +258,16 @@ header{
         cursor: pointer;
         display: inline-block;
         text-align: center;
-        background-color: #2e8366d5;
-        box-shadow: #ffffff 1px -1px 2px,
-                    #000000 3px -3px 4px;
+        background-color: #2c2c2c;
         height: 40px;
         width: 40px;
-        border-radius: 4px;
-        margin: 0 5px;
-        padding: 5px 0;
+        padding: 4px 0;
+        font-size: 22px;
     }
-        .fabs p img{
-            height: 30px;
-            width: 30px;
-        }
-    #openConfig{
-        margin: 0 5px 0 0;
-    }
+    
     #memeLoader{
         float: right;
-        margin: 0;
-        padding: 0;
-        box-shadow: #ffffff -1px -1px 2px,
-                    #000000 -3px -3px 4px;
     }
-        #memeLoader img{
-            height: 40px;
-            width: 40px;
-            filter: grayscale(100%) brightness(0%);
-        }
 
 .meme-config{
     position: fixed;
@@ -364,7 +361,7 @@ header{
             width: 150px;
             position: absolute;
             margin: 0;
-            top: 0;
+            top: 60px;
             left: 25px;
         }
             .logo img{
@@ -376,7 +373,7 @@ header{
             margin: 20px 0;
             float: right;
             position: absolute;
-            top: 0;
+            top: 60px;
             right: 0;
         }
             .social .connect{
@@ -387,8 +384,22 @@ header{
     .intro{
         width: 100%;
         margin: 0;
-        margin-top: 160px;
+        margin-top: 240px;
     }
+
+    @media only screen and (min-width: 1080px){
+        .intro{
+            width: 90%;
+            margin: 0 5%;
+            margin-top: 240px;
+        }
+        .contact{
+            width: 90%;
+            margin: 0 5%;
+            border: 0;
+        }
+    }
+
     .contact{
         width: 100%;
         margin: 0;

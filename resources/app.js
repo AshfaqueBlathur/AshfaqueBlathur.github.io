@@ -155,7 +155,7 @@ function changeRange(){
         rangeExpnter.innerText = 'revert back to select upto 5 meme';
     } else {
         rangeExpnter.previousElementSibling.setAttribute('max', '5');
-        rangeExpnter.innerText = 'force celect upto 50 meme';
+        rangeExpnter.innerText = 'force select upto 50 meme';
     };
 };
 
@@ -194,10 +194,12 @@ function toTop(){
 function autoLoad(el){
     if (load){
         load = false;
-        el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/manual.png');
+        el.firstElementChild.classList.remove('fa-mitten');
+        el.firstElementChild.classList.add('fa-robot');
     } else {
         load = true;
-        el.firstElementChild.setAttribute('src', 'resources/img/btn-icos/auto.png');
+        el.firstElementChild.classList.remove('fa-robot');
+        el.firstElementChild.classList.add('fa-mitten');
     };
     toast(`switched to ${load ? "auto" : "manual"} meme loading mode`, "info");
 };
