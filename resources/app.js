@@ -74,7 +74,7 @@ updateFetchTarget();
 
 // Fetch Meme
 function loadMeme(){
-/*     toast("started fetching memes..", "info");
+    toast("started fetching memes..", "info");
     let requestMeme = new XMLHttpRequest;
     requestMeme.onreadystatechange = () => {
         if (requestMeme.readyState == 4){
@@ -87,7 +87,7 @@ function loadMeme(){
         };
     };
     requestMeme.open("GET", fetchTarget);
-    requestMeme.send(); */
+    requestMeme.send();
 };
 
 // responsive resolution
