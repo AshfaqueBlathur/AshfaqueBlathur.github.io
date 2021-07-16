@@ -1,3 +1,18 @@
+// Projects loader
+const loadProjects = async (trigger) => {
+    trigger.style.display = 'none';
+    let ul = trigger.parentElement;
+    let req = await fetch("/resources/projects.json")
+    let projects = await req.json()
+    Object.values(projects).forEach(project => {
+        let project_name= project.name, 
+            link = project.link, 
+            description = project.description,
+            li = document.createElement('li');
+        li.innerHTML = `<h3>${project_name}</h3><span>${description}</span><a href="${link}" target="_blank">see it</a>`;
+        ul.appendChild(li)
+    })
+}
 // Toast maker
 var toastBlock = document.getElementById("toastblock");
 function toast(msg, context){
@@ -59,7 +74,7 @@ updateFetchTarget();
 
 // Fetch Meme
 function loadMeme(){
-    toast("started fetching memes..", "info");
+/*     toast("started fetching memes..", "info");
     let requestMeme = new XMLHttpRequest;
     requestMeme.onreadystatechange = () => {
         if (requestMeme.readyState == 4){
@@ -72,7 +87,7 @@ function loadMeme(){
         };
     };
     requestMeme.open("GET", fetchTarget);
-    requestMeme.send();
+    requestMeme.send(); */
 };
 
 // responsive resolution

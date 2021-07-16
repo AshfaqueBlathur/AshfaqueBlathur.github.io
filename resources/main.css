@@ -5,7 +5,7 @@ font-family: 'Poppins', sans-serif;
 :root{
     --bgc1: #000000;
     --bgc2: #000a20;
-    --txtc: #cacaca;
+    --txtc: #fcfcfc;
 }
 *{
     margin: 0;
@@ -29,6 +29,7 @@ header{
     flex-wrap: wrap;
     align-items: center;
 }
+
 .logo{
     width: 100%;
     text-align: center;
@@ -36,75 +37,74 @@ header{
 }
     .logo img{
         width: 180px;
+        filter: drop-shadow(-1px 0 #f9fcfa);
     }
+
 .intro{
     text-align: center;
     width: 90%;
     margin: 0 5%;
+    margin-bottom: 30px;
 }
     .intro h2{
         font-weight: 900;
-        letter-spacing: 2px;
         margin-bottom: 10px;
     }
-    .intro h2:after{
-        content: '';
-        display: block;
-        width: 60%;
-        height: 1px;
-        background-color: #cccccc;
-        margin: 0 auto;
-        margin-bottom: 10px;
-    }
+        .intro h2:after{
+            content: '';
+            display: block;
+            width: 80%;
+            height: 2px;
+            background-color: #cccccc;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
     .intro p{
-        padding: 0 5px;
+        padding: 0 10px;
         letter-spacing: 1px;
         font-weight: 500;
         text-align: center;
     }
-.contact{
-    width: 90%;
-    padding: 0;
-    margin: 5px 5%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
+
+.projects{
     text-align: center;
-    justify-content: space-evenly;
-}
-    .contact h3{
-        margin-top: 5px;
-    }
-    .contact h3:after{
-        content: '';
-        display: block;
-        width: 60%;
-        height: 1px;
-        background-color: #cccccc;
-        margin: 0 auto;
-        margin-bottom: 10px;
-    }
-    .contact input{
-        width: 90%;
-        height: 30px;
-        padding: 5px;
+    width: 90%;
+    margin: 0 5%;
+    margin-bottom: 50px;
+}   
+    .proj_trigger{
+        width: 80%;
+        padding: 10px;
+        margin: 10px 10%;
+        background: linear-gradient(45deg, #2c6d92, #523636);
         border: 0;
-        margin-bottom: 10px;
-    }
-    .contact button{
-        border: 0;
-        height: 30px;
-        background-color: #004211;
         text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: 400;
-        color: #ffffff;
-        text-shadow: -1px 0 #00f7ff,
-                     -2px 0 #000000;
-        cursor: pointer;
-        margin-bottom: 10px;
+        color: #fff;
     }
+    .projects li{
+        list-style: none;
+        display: block;
+        width: 100%;
+        padding: 5px;
+        margin: 10px 0;
+        background-color: #221e24;
+    }
+        .projects li h3{
+            line-height: 30px;
+            background-color: #298557;
+            margin-bottom: 10px;
+        }
+        .projects li a:any-link{
+            display: block;
+            padding: 0 10px;
+            text-shadow: -2px 2px 5px #000000;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: right;
+            color: #ffd000;
+            border: 0;
+            margin-top: 10px;
+        }
 
 .social{
     width: 90%;
@@ -353,6 +353,7 @@ header{
     header{
         width: 40%;
         height: 100vh;
+        overflow-y: scroll;
         position: fixed;
         top: 0;
         right: 0;
@@ -388,6 +389,7 @@ header{
         width: 100%;
         margin: 0;
         margin-top: 240px;
+        margin-bottom: 50px;
     }
 
                     @media only screen and (min-width: 1080px){
