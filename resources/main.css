@@ -108,7 +108,7 @@ header{
 
 .social{
     width: 90%;
-    margin: 20px 5% 150px 5%;
+    margin: 20px 5% 50px 5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -157,17 +157,48 @@ header{
                 z-index: 200;
             }
             #toastblock p{
-                padding: 5px 2% 5px 2%;
-                border-bottom: 0.5px solid;
-                margin-bottom: 2px;
-                letter-spacing: 3px;
-                background-color: #000000;
+                padding: 7px 2%;
+                border: 0.2px solid;
+                margin-bottom: 3px;
+                letter-spacing: 2px;
+                background-color: #3b3b3b;
                 text-shadow: #000000 2px 2px 15px;
                 font-style: monospace;
-                font-weight: 400;
-                font-size: small;
+                font-weight: 500;
+                font-size: 16px;
                 text-align: center;
             }
+
+            /* welcome */
+            .first_time{
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background: linear-gradient(45deg, #2c6d92, #523636);
+                z-index: 200;
+                padding: 50px 20px;
+                text-align: center;
+                overflow-y: scroll;
+            }
+                .first_time h1{
+                    font-size: 250px;
+                    line-height: 200px;
+                }
+                .first_time h2{
+                    margin-bottom: 20px;
+                }
+                .first_time p{
+                    margin: 10px 0;
+                } 
+                .first_time span{
+                    display: block;
+                    width: 100%;
+                    padding: 10px; 
+                    color: #eeff00; 
+                    background-color: #2e2e2e;
+                }
 
 .fun{
     width: 100%;
@@ -342,7 +373,7 @@ header{
         color: #f8ea22;
         letter-spacing: 5px;
         text-transform: uppercase;
-        font-size: medium;
+        font-size: small;
         transition: 500ms;
     }
 

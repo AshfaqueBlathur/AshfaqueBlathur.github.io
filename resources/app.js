@@ -49,6 +49,22 @@ function clearMsg(id, time){
     }, time)
 };
 
+// demo
+if (localStorage.firstTime === undefined){
+    let div = document.createElement('div')
+    div.classList.add('first_time')
+    div.innerHTML = `<h1>🛰</h1>
+                    <h2>Welcome to the most cool place to visit, on the internet!</h2>
+                    <p style="font-family: monospace; font-size: smaller;">You are seeing this, cause you seems to be new here, technically. But you may not be. If so...</p> 
+                    <span onclick="this.parentElement.remove()">CLOSE THIS</span>
+                    <p>Besides being my portfolio, this page has an ability to load images from the website 'reddit.com'</p>
+                    <p>After closing this, you have some buttons on the bottom or bottom right as of your secree size.</p>
+                    <p>Litarelly, you are one click away from knowing in detail about, 'what they do'.</p> 
+                    <span onclick="this.parentElement.remove()">CLOSE THIS</span>`;
+    document.getElementById('welcome').appendChild(div)
+    localStorage.firstTime = 'nope';
+}
+
 // golobal vars
 var loaded = [],
     favSub = '',
